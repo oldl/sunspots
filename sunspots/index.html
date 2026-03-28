@@ -645,7 +645,21 @@ async function _fetchAllBrussels() {
 }
 
 async function fetchFromAirtable(cityKey) {
-  if (cityKey === 'antwerpen') { return await fetchAirtableByFormula('{city}="antwerpen"', 'airtable:antwerpen'); }
+  if (cityKey === 'antwerpen') {
+    if (_atCache['antwerpen']) return _atCache['antwerpen'];
+    try {
+      const res = await fetch('./sunspots-data.json');
+      if (res.ok) {
+        const d = await res.json();
+        const spots = (d.bruxelles && d.bruxelles.antwerpen) || [];
+        _atCache['antwerpen'] = spots;
+        return spots;
+      }
+    } catch(e) {
+      console.warn('JSON fallback Antwerp:', e.message);
+    }
+    return [];
+  }
   if (_BXL_COMMUNES.includes(cityKey)) {
     const all = await _fetchAllBrussels();
     const c = COMMUNES[cityKey];
