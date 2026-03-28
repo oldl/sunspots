@@ -69,21 +69,19 @@ exports.handler = async (event) => {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 8192,
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 4096,
         messages: [{
           role: 'user',
-          content: `Tu es l'assistant du projet SunSpots (mini.appvelvet.com/sunspots).
-Voici le fichier index.html actuel :
-
-\`\`\`html
-${currentContent}
-\`\`\`
+          content: `Tu es l'assistant du projet SunSpots. Tu dois modifier un fichier HTML.
 
 Instruction : ${instruction}
 
-Réponds UNIQUEMENT avec le fichier HTML complet modifié, sans aucun commentaire avant ou après. 
-Ne mets pas de backticks ni de markdown autour. Juste le HTML brut.`,
+Voici le fichier (${currentContent.length} chars) :
+
+${currentContent}
+
+Réponds UNIQUEMENT avec le fichier HTML complet modifié. Pas de markdown, pas de backticks, juste le HTML brut.`,
         }],
       }),
     });
