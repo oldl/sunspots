@@ -425,6 +425,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
   <div class="commune-tab" data-commune="woluwe-sl" onclick="selectCommune('woluwe-sl')">WSL</div>
   <div class="commune-tab" data-commune="woluwe-sp" onclick="selectCommune('woluwe-sp')">WSP</div>
   <div class="commune-tab" data-commune="auderghem" onclick="selectCommune('auderghem')">Auderghem</div>
+  <div class="commune-tab" data-commune="antwerpen" onclick="selectCommune('antwerpen')">Anvers</div>
   <div class="commune-tab geo-tab" data-commune="geo" onclick="selectGeo()">📍 Moi</div>
 </div>
 
@@ -451,6 +452,7 @@ const COMMUNES = {
   'woluwe-sl':    {label:'WSL',        lat:50.8390,lng:4.4320,radius:1000},
   'woluwe-sp':    {label:'WSP',        lat:50.8190,lng:4.4390,radius:1000},
   'auderghem':    {label:'Auderghem',  lat:50.8100,lng:4.4180,radius:900 },
+  'antwerpen':    {label:'Anvers',     lat:51.2213,lng:4.4051,radius:1500},
 };
 
 const CURATED = [
@@ -643,6 +645,20 @@ async function _fetchAllBrussels() {
 }
 
 async function fetchFromAirtable(cityKey) {
+  if (cityKey === 'antwerpen') {
+    if (_atCache['antwerpen']) return _atCache['antwerpen'];
+    try {
+      const res = await fetch('./sunspots-data.json');
+      if (res.ok) {
+        const d = await res.json();
+        const spots = (d.bruxelles && d.bruxelles.antwerpen) || [];
+        _atCache['antwerpen'] = spots;
+        console.log('Antwerp JSON: '+spots.length+' spots');
+        return spots;
+      }
+    } catch(e) { console.warn('Antwerp JSON err:', e.message); }
+    return [];
+  }
   if (_BXL_COMMUNES.includes(cityKey)) {
     const all = await _fetchAllBrussels();
     const c = COMMUNES[cityKey];
