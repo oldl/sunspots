@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="description" content="Trouvez les terrasses au soleil Ã  Bruxelles en temps rÃ©el. SunSpots repÃ¨re les bons spots pour boire un verre au soleil, maintenant.">
+<meta name="description" content="Trouvez les terrasses au soleil à Bruxelles en temps réel. SunSpots repère les bons spots pour boire un verre au soleil, maintenant.">
 
-<meta property="og:title" content="SunSpots â terrasse & zonneclash Ã  Bruxelless">
-<meta property="og:description" content="La mini-app qui repÃ¨re les terrasses au soleil Ã  Bruxelles, en temps rÃ©el.">
+<meta property="og:title" content="SunSpots — terrasse & zonneclash à Bruxelless">
+<meta property="og:description" content="La mini-app qui repère les terrasses au soleil à Bruxelles, en temps réel.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mini.appvelvet.com/sunspots/">
 <meta property="og:image" content="https://mini.appvelvet.com/sunspots/og-image.jpg">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SunSpots â terrasse & zonneclash Ã  Bruxelless">
-<meta name="twitter:description" content="RepÃ©rez les terrasses au soleil Ã  Bruxelles, maintenant.">
+<meta name="twitter:title" content="SunSpots — terrasse & zonneclash à Bruxelless">
+<meta name="twitter:description" content="Repérez les terrasses au soleil à Bruxelles, maintenant.">
 <meta name="twitter:image" content="https://mini.appvelvet.com/sunspots/og-image.jpg">
 
 <title>Terrasse Soleil</title>
@@ -29,7 +29,7 @@
 }
 html, body { background: var(--bg); color: var(--cream); font-family: 'DM Mono', monospace; overflow-x: hidden; }
 
-/* ââ HEADER ââ */
+/* ── HEADER ── */
 .header { position:relative; background:var(--bg); padding:0.85rem 1.1rem 0; overflow:hidden; }
 
 /* Solar circle bg */
@@ -60,7 +60,7 @@ html, body { background: var(--bg); color: var(--cream); font-family: 'DM Mono',
   z-index:1; pointer-events:none;
 }
 
-/* Arc SVG â absolute inside glass zone */
+/* Arc SVG — absolute inside glass zone */
 .arc-wrap {
   width:calc(100% + 2.2rem);
   margin:0.3rem -1.1rem 0;
@@ -99,7 +99,7 @@ html, body { background: var(--bg); color: var(--cream); font-family: 'DM Mono',
 }
 
 
-/* ââ TIMELINE CURSOR ââ */
+/* ── TIMELINE CURSOR ── */
 #timeline-cursor { 
   position:fixed;
   top:0; bottom:0;
@@ -134,7 +134,7 @@ html, body { background: var(--bg); color: var(--cream); font-family: 'DM Mono',
   backdrop-filter:blur(4px);
 }
 
-/* ââ SLIDER ââ */
+/* ── SLIDER ── */
 .slider-area { padding:0.35rem 0 0.1rem; }
 .slider-meta { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.42rem; }
 .time-label { font-size:0.44rem; color:var(--warm-mid); opacity:0.5; letter-spacing:0.12em; text-transform:uppercase; }
@@ -145,7 +145,7 @@ input[type=range] { -webkit-appearance:none; width:100%; height:2px; background:
 input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; height:15px; background:var(--cream); border:2px solid var(--bg); border-radius:50%; cursor:pointer; box-shadow:0 0 8px rgba(245,166,35,0.55); }
 .time-ticks { display:flex; justify-content:space-between; font-size:0.44rem; color:rgba(120,160,220,0.35); margin-top:0.32rem; }
 
-/* ââ WEATHER + GEO ââ */
+/* ── WEATHER + GEO ── */
 .weather-geo { display:flex; align-items:center; justify-content:space-between; padding:0.52rem 0 0.65rem; margin-top:0.48rem; }
 .weather-block { display:flex; align-items:center; gap:0.4rem; }
 .weather-icon { font-size:1rem; }
@@ -154,7 +154,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 .geo-btn:hover { border-color:var(--shade-blue); }
 .geo-btn.located { color:var(--sun-bright); border-color:rgba(245,166,35,0.4); }
 
-/* ââ TABS ââ */
+/* ── TABS ── */
 .commune-tabs { display:flex; overflow-x:auto; scrollbar-width:none; background:var(--bg-mid); border-top:1px solid var(--card-border); border-bottom:1px solid var(--card-border); position:sticky; top:0; z-index:50; }
 .commune-tabs::-webkit-scrollbar { display:none; }
 .commune-tab { font-family:'Barlow Condensed', sans-serif; font-weight:700; font-size:0.82rem; letter-spacing:0.1em; color:rgba(154,122,90,0.36); padding:0.56rem 0.88rem 0.5rem; cursor:pointer; white-space:nowrap; border-bottom:2px solid transparent; transition:all 0.18s; flex-shrink:0; position:relative; top:1px; }
@@ -163,11 +163,11 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 .commune-tab.geo-tab { color:rgba(90,122,138,0.42); border-left:1px solid var(--card-border); margin-left:auto; }
 .commune-tab.geo-tab.active { color:var(--shade-blue); border-bottom-color:var(--shade-blue); }
 
-/* ââ COUNT ââ */
+/* ── COUNT ── */
 .sun-count { padding:0.46rem 1.1rem; font-size:0.5rem; color:var(--warm-mid); opacity:0.5; letter-spacing:0.1em; text-transform:uppercase; min-height:1.65rem; display:flex; align-items:center; border-bottom:1px solid var(--card-border); background:var(--bg); }
 .sun-count span { color:var(--sun-bright); opacity:1; font-weight:500; }
 
-/* ââ CARDS ââ */
+/* ── CARDS ── */
 .cafe-list { padding:0 0 4rem; background:var(--bg); }
 .cafe-card { padding:0.82rem 1.1rem; border-bottom:1px solid var(--card-border); display:grid; grid-template-columns:1fr auto; gap:0.3rem 0.82rem; cursor:pointer; transition:background 0.15s; position:relative; }
 .cafe-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
@@ -180,7 +180,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 .cafe-name { font-family:'Syne', sans-serif; font-weight:700; font-size:0.95rem; color:var(--cream); line-height:1.2; }
 .cafe-meta-row { display:flex; align-items:center; gap:0.38rem; margin-top:0.05rem; flex-wrap:wrap; }
 .cafe-dist { font-size:0.46rem; color:var(--warm-mid); opacity:0.38; }
-.cafe-dist::before { content:'Â·'; margin-right:0.3rem; }
+.cafe-dist::before { content:'·'; margin-right:0.3rem; }
 
 .sun-badge { font-family:'Barlow Condensed', sans-serif; font-weight:800; font-size:0.65rem; letter-spacing:0.08em; padding:0.12rem 0.42rem; align-self:start; flex-shrink:0; white-space:nowrap; }
 .sun-badge.s { background:linear-gradient(135deg,#FFD166 0%,#F5A623 55%,#E8840A 100%); color:#0A0600; border:none; box-shadow:0 0 10px rgba(245,166,35,0.3); }
@@ -216,7 +216,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 .curated-dot { width:4px; height:4px; background:var(--sun-bright); border-radius:50%; flex-shrink:0; align-self:center; opacity:0.4; }
 
 
-/* ââ WEATHER BANNER ââ */
+/* ── WEATHER BANNER ── */
 .weather-banner {
   padding: 0.5rem 1.1rem;
   font-size: 0.55rem; letter-spacing: 0.06em;
@@ -246,7 +246,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
   color: rgba(150,160,200,0.6);
 }
 
-/* ââ STATES ââ */
+/* ── STATES ── */
 .state-msg { padding:2.5rem 2rem; text-align:center; font-family:'DM Mono', monospace;  color:var(--warm-mid); opacity:0.4; font-size:0.84rem; line-height:1.8; }
 .loader { width:18px; height:18px; border:2px solid rgba(245,166,35,0.1); border-top-color:var(--sun-bright); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 0.72rem; }
 @keyframes spin { to { transform:rotate(360deg); } }
@@ -255,7 +255,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 .step.done { opacity:0.17; text-decoration:line-through; }
 .step.active { opacity:0.58; color:var(--sun-bright); }
 
-/* ââ FOOTER ââ */
+/* ── FOOTER ── */
 .footer {
   padding: 1.5rem 1.1rem 2rem;
   display: flex; align-items: center; justify-content: space-between;
@@ -284,7 +284,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 }
 .footer-suggest:hover { border-color: var(--shade-blue); color: var(--cream); }
 
-/* ââ SUGGEST MODAL ââ */
+/* ── SUGGEST MODAL ── */
 .modal-overlay {
   position: fixed; inset: 0;
   background: rgba(8,13,24,0.88);
@@ -358,7 +358,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
     <div class="header-top">
       <div>
         <div class="app-title">SunSpots</div>
-        <div class="app-sub">Bruxelles Â· Ensoleillement terrasses</div>
+        <div class="app-sub">Bruxelles · Ensoleillement terrasses</div>
       </div>
       <div class="time-block">
         <div class="current-time" id="clockDisplay">--:--</div>
@@ -391,7 +391,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
     <div class="slider-area">
       <div class="slider-meta">
         <div>
-          <div class="time-label">Heure sÃ©lectionnÃ©e</div>
+          <div class="time-label">Heure sélectionnée</div>
           <div class="selected-time" id="selectedTime">--:--</div>
         </div>
         <div class="sun-status" id="sunStatusText"></div>
@@ -402,10 +402,10 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 
     <div class="weather-geo">
       <div class="weather-block">
-        <span class="weather-icon" id="weatherIcon">â</span>
-        <span class="weather-text" id="contextText">MÃ©tÃ©oâ¦</span>
+        <span class="weather-icon" id="weatherIcon">—</span>
+        <span class="weather-text" id="contextText">Météo…</span>
       </div>
-      <button class="geo-btn" id="geoBtn" onclick="requestGeo()">ð Me localiser</button>
+      <button class="geo-btn" id="geoBtn" onclick="requestGeo()">📍 Me localiser</button>
     </div>
   </div><!-- end header-content -->
 </div>
@@ -425,15 +425,15 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
   <div class="commune-tab" data-commune="woluwe-sl" onclick="selectCommune('woluwe-sl')">WSL</div>
   <div class="commune-tab" data-commune="woluwe-sp" onclick="selectCommune('woluwe-sp')">WSP</div>
   <div class="commune-tab" data-commune="auderghem" onclick="selectCommune('auderghem')">Auderghem</div>
-  <div class="commune-tab geo-tab" data-commune="geo" onclick="selectGeo()">ð Moi</div>
+  <div class="commune-tab geo-tab" data-commune="geo" onclick="selectGeo()">📍 Moi</div>
 </div>
 
 <div id="weatherBanner"></div>
 <div class="sun-count" id="sunCount"></div>
-<div id="mainContent"><div class="state-msg"><div class="loader"></div>Chargementâ¦</div></div>
+<div id="mainContent"><div class="state-msg"><div class="loader"></div>Chargement…</div></div>
 <div id="timeline-cursor"></div>
 <div id="cursor-chip"></div>
-<div class="copy-toast" id="copyToast">Adresse copiÃ©e</div>
+<div class="copy-toast" id="copyToast">Adresse copiée</div>
 
 <script>
 const COMMUNES = {
@@ -451,17 +451,16 @@ const COMMUNES = {
   'woluwe-sl':    {label:'WSL',        lat:50.8390,lng:4.4320,radius:1000},
   'woluwe-sp':    {label:'WSP',        lat:50.8190,lng:4.4390,radius:1000},
   'auderghem':    {label:'Auderghem',  lat:50.8100,lng:4.4180,radius:900 },
-  'antwerpen':    {label:'Anvers',     lat:51.2213,lng:4.4051,radius:1500},
 };
 
 const CURATED = [
-  {name:"La Machine",             address:"Place Saint-GÃ©ry 2, 1000",                   commune:"centre",       lat:50.8481,lng:4.3460},
-  {name:"Le Grand CafÃ©",          address:"Bd Anspach 78, 1000",                        commune:"centre",       lat:50.8490,lng:4.3488},
-  {name:"Scott's Bar",            address:"Rue Montagne aux Herbes PotagÃ¨res 2, 1000",  commune:"centre",       lat:50.8484,lng:4.3524},
-  {name:"Zebra",                  address:"Place Saint-GÃ©ry 33, 1000",                  commune:"centre",       lat:50.8479,lng:4.3455},
-  {name:"CafÃ© Walvis",            address:"Rue Antoine Dansaert 209, 1000",             commune:"centre",       lat:50.8527,lng:4.3431},
-  {name:"BÃ©lier",                 address:"Borgwal 9, 1000",                            commune:"centre",       lat:50.8486,lng:4.3469},
-  {name:"The Purple Rose",        address:"Rue du MarchÃ© aux Herbes 97, 1000",          commune:"centre",       lat:50.8483,lng:4.3530},
+  {name:"La Machine",             address:"Place Saint-Géry 2, 1000",                   commune:"centre",       lat:50.8481,lng:4.3460},
+  {name:"Le Grand Café",          address:"Bd Anspach 78, 1000",                        commune:"centre",       lat:50.8490,lng:4.3488},
+  {name:"Scott's Bar",            address:"Rue Montagne aux Herbes Potagères 2, 1000",  commune:"centre",       lat:50.8484,lng:4.3524},
+  {name:"Zebra",                  address:"Place Saint-Géry 33, 1000",                  commune:"centre",       lat:50.8479,lng:4.3455},
+  {name:"Café Walvis",            address:"Rue Antoine Dansaert 209, 1000",             commune:"centre",       lat:50.8527,lng:4.3431},
+  {name:"Bélier",                 address:"Borgwal 9, 1000",                            commune:"centre",       lat:50.8486,lng:4.3469},
+  {name:"The Purple Rose",        address:"Rue du Marché aux Herbes 97, 1000",          commune:"centre",       lat:50.8483,lng:4.3530},
   {name:"The Wild Geese",         address:"Avenue Livingstone 2, 1000",                 commune:"centre",       lat:50.8430,lng:4.3715},
   {name:"Bar du Canal",           address:"Rue Antoine Dansaert 208, 1000",             commune:"centre",       lat:50.8558,lng:4.3425},
   {name:"Vertigo",                address:"Rue de Rollebeek 7, 1000",                   commune:"centre",       lat:50.8444,lng:4.3545},
@@ -469,23 +468,23 @@ const CURATED = [
   {name:"Le Perroquet",           address:"Rue Watteeu 31, 1000",                       commune:"centre",       lat:50.8437,lng:4.3557},
   {name:"Flamingo",               address:"Rue de Laken 177, 1000",                     commune:"centre",       lat:50.8595,lng:4.3490},
   {name:"Arthur Orlans",          address:"Rue Antoine Dansaert 67, 1000",              commune:"centre",       lat:50.8510,lng:4.3435},
-  {name:"Au Vieux Saint-Antoine", address:"Rue du MarchÃ© au Charbon 25, 1000",          commune:"centre",       lat:50.8469,lng:4.3476},
+  {name:"Au Vieux Saint-Antoine", address:"Rue du Marché au Charbon 25, 1000",          commune:"centre",       lat:50.8469,lng:4.3476},
   {name:"Mappa Mundo",            address:"Rue du Pont de la Carpe 2, 1000",            commune:"centre",       lat:50.8478,lng:4.3456},
-  {name:"Delirium CafÃ©",          address:"Impasse de la FidÃ©litÃ© 4, 1000",             commune:"centre",       lat:50.8490,lng:4.3527},
+  {name:"Delirium Café",          address:"Impasse de la Fidélité 4, 1000",             commune:"centre",       lat:50.8490,lng:4.3527},
   {name:"Delirium Monasterium",   address:"Rue des Bouchers 10, 1000",                  commune:"centre",       lat:50.8484,lng:4.3528},
   {name:"Marcelle",               address:"Place du Samedi 15, 1000",                   commune:"centre",       lat:50.8564,lng:4.3457},
-  {name:"La Fleur en Papier DorÃ©",address:"Rue des Alexiens 55, 1000",                  commune:"centre",       lat:50.8443,lng:4.3515},
-  {name:"CafÃ© FlorÃ©o",            address:"Rue des Riches Claires 19, 1000",            commune:"centre",       lat:50.8502,lng:4.3463},
+  {name:"La Fleur en Papier Doré",address:"Rue des Alexiens 55, 1000",                  commune:"centre",       lat:50.8443,lng:4.3515},
+  {name:"Café Floréo",            address:"Rue des Riches Claires 19, 1000",            commune:"centre",       lat:50.8502,lng:4.3463},
   {name:"Barbeton",               address:"Rue Antoine Dansaert 114, 1000",             commune:"centre",       lat:50.8522,lng:4.3423},
-  {name:"CafÃ© Novo",              address:"Place de la Vieille Halle aux BlÃ©s 37, 1000",commune:"centre",       lat:50.8463,lng:4.3517},
+  {name:"Café Novo",              address:"Place de la Vieille Halle aux Blés 37, 1000",commune:"centre",       lat:50.8463,lng:4.3517},
   {name:"La Pharmacie Anglaise",  address:"Coudenberg 66, 1000",                        commune:"centre",       lat:50.8448,lng:4.3611},
-  {name:"Cartagena Salsa Bar",    address:"Rue du MarchÃ© au Charbon 70, 1000",          commune:"centre",       lat:50.8463,lng:4.3478},
-  {name:"Little Delirium",        address:"Rue du MarchÃ© aux Fromages 9, 1000",         commune:"centre",       lat:50.8486,lng:4.3524},
+  {name:"Cartagena Salsa Bar",    address:"Rue du Marché au Charbon 70, 1000",          commune:"centre",       lat:50.8463,lng:4.3478},
+  {name:"Little Delirium",        address:"Rue du Marché aux Fromages 9, 1000",         commune:"centre",       lat:50.8486,lng:4.3524},
   {name:"Bier Circus",            address:"Rue de l'Enseignement 57, 1000",             commune:"centre",       lat:50.8520,lng:4.3600},
   {name:"Cobra bar-gallery",      address:"Rue des Chartreux 1, 1000",                  commune:"centre",       lat:50.8490,lng:4.3455},
   {name:"Grap Wine Bar",          address:"Rue Wappers 15, 1000",                       commune:"centre",       lat:50.8450,lng:4.3540},
   {name:"Mezzo",                  address:"Borgwal 18, 1000",                           commune:"centre",       lat:50.8485,lng:4.3469},
-  {name:"Che Habana CafÃ©",        address:"Rue des Harengs 16, 1000",                   commune:"centre",       lat:50.8487,lng:4.3530},
+  {name:"Che Habana Café",        address:"Rue des Harengs 16, 1000",                   commune:"centre",       lat:50.8487,lng:4.3530},
   {name:"Monk",                   address:"Rue Sainte-Catherine 42, 1000",              commune:"centre",       lat:50.8508,lng:4.3472},
   {name:"La Brocante",            address:"Rue Blaes 170, 1000",                        commune:"centre",       lat:50.8411,lng:4.3498},
   {name:"Jungle Bar",             address:"Rue des Pierres 52, 1000",                   commune:"centre",       lat:50.8494,lng:4.3523},
@@ -493,52 +492,52 @@ const CURATED = [
   {name:"WASBAR",                 address:"Rue Henri Maus 45, 1000",                    commune:"centre",       lat:50.8475,lng:4.3498},
   {name:"La Lunette",             address:"Place de la Monnaie 3, 1000",                commune:"centre",       lat:50.8517,lng:4.3555},
   {name:"Guingette Maurice",      address:"Parc du Cinquantenaire, 1000",               commune:"centre",       lat:50.8415,lng:4.3946},
-  {name:"Le Jardin Rooftop",      address:"Rue du MarchÃ© aux Poulets 7, 1000",          commune:"centre",       lat:50.8502,lng:4.3525,rooftop:true},
+  {name:"Le Jardin Rooftop",      address:"Rue du Marché aux Poulets 7, 1000",          commune:"centre",       lat:50.8502,lng:4.3525,rooftop:true},
   {name:"Le COOP",                address:"Avenue du Port 86C, 1000",                   commune:"centre",       lat:50.8630,lng:4.3380,rooftop:true},
-  {name:"Cospaia Rooftop",        address:"Rue de la RÃ©gence 2, 1000",                  commune:"centre",       lat:50.8418,lng:4.3602,rooftop:true},
-  {name:"Le Tavernier",           address:"ChaussÃ©e de Boondael 445, 1050",             commune:"ixelles",      lat:50.8117,lng:4.3869},
+  {name:"Cospaia Rooftop",        address:"Rue de la Régence 2, 1000",                  commune:"centre",       lat:50.8418,lng:4.3602,rooftop:true},
+  {name:"Le Tavernier",           address:"Chaussée de Boondael 445, 1050",             commune:"ixelles",      lat:50.8117,lng:4.3869},
   {name:"Victoria Bar",           address:"Avenue de la Toison d'Or 11, 1050",          commune:"ixelles",      lat:50.8353,lng:4.3641},
-  {name:"Wine Bar Mouchart",      address:"Rue EugÃ¨ne Cattoir 11, 1050",                commune:"ixelles",      lat:50.8219,lng:4.3765},
+  {name:"Wine Bar Mouchart",      address:"Rue Eugène Cattoir 11, 1050",                commune:"ixelles",      lat:50.8219,lng:4.3765},
   {name:"Loui Bar & Restaurant",  address:"Avenue Louise 71, 1050",                     commune:"ixelles",      lat:50.8345,lng:4.3624},
   {name:"Alice Cocktail Bar",     address:"Avenue Louise 190, 1050",                    commune:"ixelles",      lat:50.8296,lng:4.3708},
-  {name:"De Haus",                address:"ChaussÃ©e d'Ixelles 183, 1050",               commune:"ixelles",      lat:50.8271,lng:4.3784},
-  {name:"L'Amour Fou",            address:"ChaussÃ©e d'Ixelles 185, 1050",               commune:"ixelles",      lat:50.8271,lng:4.3785},
+  {name:"De Haus",                address:"Chaussée d'Ixelles 183, 1050",               commune:"ixelles",      lat:50.8271,lng:4.3784},
+  {name:"L'Amour Fou",            address:"Chaussée d'Ixelles 185, 1050",               commune:"ixelles",      lat:50.8271,lng:4.3785},
   {name:"O Artista",              address:"Rue de la Brasserie 98A, 1050",              commune:"ixelles",      lat:50.8280,lng:4.3820},
-  {name:"Choco Bar",              address:"ChaussÃ©e d'Ixelles 149, 1050",               commune:"ixelles",      lat:50.8280,lng:4.3773},
-  {name:"Tapas Y Mas",            address:"ChaussÃ©e de Boondael 372, 1050",             commune:"ixelles",      lat:50.8138,lng:4.3858},
+  {name:"Choco Bar",              address:"Chaussée d'Ixelles 149, 1050",               commune:"ixelles",      lat:50.8280,lng:4.3773},
+  {name:"Tapas Y Mas",            address:"Chaussée de Boondael 372, 1050",             commune:"ixelles",      lat:50.8138,lng:4.3858},
   {name:"Etiquette Wines",        address:"Avenue Emile De Mot 19, 1050",               commune:"ixelles",      lat:50.8252,lng:4.3770},
-  {name:"CafÃ© Flora",             address:"Parvis de Saint-Gilles 16A, 1060",           commune:"saint-gilles", lat:50.8333,lng:4.3441},
+  {name:"Café Flora",             address:"Parvis de Saint-Gilles 16A, 1060",           commune:"saint-gilles", lat:50.8333,lng:4.3441},
   {name:"Brasserie de l'Union",   address:"Parvis de Saint-Gilles 55, 1060",            commune:"saint-gilles", lat:50.8334,lng:4.3438},
   {name:"Maison du Peuple",       address:"Parvis Saint-Gilles 39, 1060",               commune:"saint-gilles", lat:50.8330,lng:4.3435},
   {name:"Le Dillens",             address:"Place Julien Dillens 11, 1060",              commune:"saint-gilles", lat:50.8313,lng:4.3433},
   {name:"La Trinquette",          address:"Rue de l'Aqueduc 3, 1060",                   commune:"saint-gilles", lat:50.8274,lng:4.3493},
   {name:"Rubis Wine Bar",         address:"Avenue Adolphe Demeur 34, 1060",             commune:"saint-gilles", lat:50.8303,lng:4.3473},
-  {name:"CafÃ© La Pompe",          address:"ChaussÃ©e de Waterloo 211, 1060",             commune:"saint-gilles", lat:50.8262,lng:4.3520},
-  {name:"Cauri Bar",              address:"ChaussÃ©e d'Alsemberg 163, 1190",             commune:"forest",       lat:50.8148,lng:4.3367},
-  {name:"Bar Ã  Nelson",           address:"Avenue Wielemans Ceuppens 128, 1190",        commune:"forest",       lat:50.8186,lng:4.3311},
+  {name:"Café La Pompe",          address:"Chaussée de Waterloo 211, 1060",             commune:"saint-gilles", lat:50.8262,lng:4.3520},
+  {name:"Cauri Bar",              address:"Chaussée d'Alsemberg 163, 1190",             commune:"forest",       lat:50.8148,lng:4.3367},
+  {name:"Bar à Nelson",           address:"Avenue Wielemans Ceuppens 128, 1190",        commune:"forest",       lat:50.8186,lng:4.3311},
   {name:"Wiels Terrasse",         address:"Avenue Van Volxem 354, 1190",                commune:"forest",       lat:50.8218,lng:4.3322,rooftop:true},
-  {name:"L'AmÃ¨re Ã  boire",        address:"ChaussÃ©e d'Alsemberg 1008, 1180",            commune:"uccle",        lat:50.7861,lng:4.3558},
+  {name:"L'Amère à boire",        address:"Chaussée d'Alsemberg 1008, 1180",            commune:"uccle",        lat:50.7861,lng:4.3558},
   {name:"Taverne Brusilia",       address:"Avenue Louis Bertrand 127, 1030",            commune:"schaerbeek",   lat:50.8674,lng:4.3812},
-  {name:"Bar du Gaspi",           address:"ChaussÃ©e de Haecht 309, 1030",               commune:"schaerbeek",   lat:50.8700,lng:4.3750},
+  {name:"Bar du Gaspi",           address:"Chaussée de Haecht 309, 1030",               commune:"schaerbeek",   lat:50.8700,lng:4.3750},
   {name:"Le Barboteur",           address:"Avenue Louis Bertrand 23, 1030",             commune:"schaerbeek",   lat:50.8621,lng:4.3778},
-  {name:"New Majestic Bar",       address:"ChaussÃ©e de Louvain 397, 1030",              commune:"schaerbeek",   lat:50.8712,lng:4.3830},
+  {name:"New Majestic Bar",       address:"Chaussée de Louvain 397, 1030",              commune:"schaerbeek",   lat:50.8712,lng:4.3830},
 ];
 
-// ââ STATE ââ
+// ── STATE ──
 let activeCommune='ixelles', userLat=null, userLng=null, displaySlot=null;
 let cache={}, weatherCache={};
 
-// ââ CLOCK ââ
+// ── CLOCK ──
 function updateClock() {
   const n=new Date();
   document.getElementById('clockDisplay').textContent=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
-  const D=['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],M=['jan','fÃ©v','mar','avr','mai','jun','jul','aoÃ»','sep','oct','nov','dÃ©c'];
+  const D=['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],M=['jan','fév','mar','avr','mai','jun','jul','aoû','sep','oct','nov','déc'];
   const el=document.getElementById('dateDisplay');
   if(el) el.textContent=`${D[n.getDay()]} ${n.getDate()} ${M[n.getMonth()]}`.toUpperCase();
 }
 updateClock(); setInterval(updateClock,30000);
 
-// ââ SLOTS ââ
+// ── SLOTS ──
 const DAY_START_HOUR = 5;
 const DAY_END_HOUR = 23;
 const SLOT_MINUTES = 15;
@@ -552,12 +551,12 @@ function slotToStr(s){const d=slotToDate(s);return `${String(d.getHours()).padSt
 function slotToHour(s){return DAY_START_HOUR+s*SLOT_MINUTES/60;}
 function getActiveSlot(){return displaySlot!==null?displaySlot:currentSlot();}
 
-// ââ UTILS ââ
+// ── UTILS ──
 function haversine(la1,ln1,la2,ln2){const R=6371000,dL=(la2-la1)*Math.PI/180,dN=(ln2-ln1)*Math.PI/180;const a=Math.sin(dL/2)**2+Math.cos(la1*Math.PI/180)*Math.cos(la2*Math.PI/180)*Math.sin(dN/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}
 function fmtDist(m){return m<1000?Math.round(m/10)*10+'m':(m/1000).toFixed(1).replace('.',',')+' km';}
 function bbox(lat,lng,r){const d=r/111320,dL=d/Math.cos(lat*Math.PI/180);return{s:lat-d,n:lat+d,w:lng-dL,e:lng+dL};}
 
-// ââ AZIMUTH ââ
+// ── AZIMUTH ──
 function bearing(la1,ln1,la2,ln2){const dL=(ln2-ln1)*Math.PI/180,la1r=la1*Math.PI/180,la2r=la2*Math.PI/180;const y=Math.sin(dL)*Math.cos(la2r),x=Math.cos(la1r)*Math.sin(la2r)-Math.sin(la1r)*Math.cos(la2r)*Math.cos(dL);return(Math.atan2(y,x)*180/Math.PI+360)%360;}
 function toXY(lat,lng,rla,rln){return{x:(lng-rln)*Math.cos(rla*Math.PI/180)*111320,y:(lat-rla)*111320};}
 function ptSeg(px,py,ax,ay,bx,by){const dx=bx-ax,dy=by-ay,l2=dx*dx+dy*dy;if(!l2)return Math.sqrt((px-ax)**2+(py-ay)**2);const t=Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/l2));return Math.sqrt((px-ax-t*dx)**2+(py-ay-t*dy)**2);}
@@ -568,7 +567,7 @@ function azimuthFromRoads(lat,lng,segs){
   return bestAz??Math.round(Math.random()*360);
 }
 
-// ââ OVERPASS : multi-endpoint + fallback curated si tout Ã©choue ââ
+// ── OVERPASS : multi-endpoint + fallback curated si tout échoue ──
 const ENDPOINTS=[
   'https://overpass-api.de/api/interpreter',
   'https://overpass.kumi.systems/api/interpreter',
@@ -601,7 +600,7 @@ async function fetchCafesAndRoads(lat,lng,radius){
 }
 
 
-// ââ AIRTABLE API ââ
+// ── AIRTABLE API ──
 const _AT_TOKEN = 'patZ1K7A0mOO4CZ9n.0fe086e81531f3af66988cc7b57c48ebb726b46acd9373c1e80e2507d6cf2954';
 const _AT_BASE  = 'appLZBC3hd6wuUTVR';
 const _AT_TABLE = 'tbl3wivJNAop2e1z7';
@@ -644,21 +643,6 @@ async function _fetchAllBrussels() {
 }
 
 async function fetchFromAirtable(cityKey) {
-  // Antwerp: fetch from static JSON
-  if (cityKey === 'antwerpen') {
-    if (_atCache['antwerpen']) return _atCache['antwerpen'];
-    try {
-      const res = await fetch('./sunspots-data.json');
-      if (res.ok) {
-        const d = await res.json();
-        const spots = (d.bruxelles && d.bruxelles.antwerpen) || [];
-        _atCache['antwerpen'] = spots;
-        console.log('Antwerp JSON: '+spots.length+' spots');
-        return spots;
-      }
-    } catch(e) { console.warn('Antwerp JSON err:', e.message); }
-    return [];
-  }
   if (_BXL_COMMUNES.includes(cityKey)) {
     const all = await _fetchAllBrussels();
     const c = COMMUNES[cityKey];
@@ -734,7 +718,7 @@ async function fetchFromJSON(cityKey) {
   return all.filter(t => haversine(c.lat, c.lng, t.lat, t.lng) <= radius);
 }
 
-// ââ MERGE ââ
+// ── MERGE ──
 function mergeCafes(osmCafes, atData){
   const toMerge = atData || [];
   const merged=[...osmCafes];
@@ -742,7 +726,7 @@ function mergeCafes(osmCafes, atData){
   return merged;
 }
 
-// ââ SUNCALC ââ
+// ── SUNCALC ──
 function getSunStatus(lat,lng,az,date){const pos=SunCalc.getPosition(date,lat,lng);if(pos.altitude*180/Math.PI<2)return 'n';const sunAz=(pos.azimuth*180/Math.PI+180+360)%360,diff=Math.abs(sunAz-az)%360,angle=diff>180?360-diff:diff;return angle<70?'s':angle<95?'p':'n';}
 function getSchedule(lat,lng,az){const now=new Date();return Array.from({length:SLOT_COUNT},(_,i)=>getSunStatus(lat,lng,az,new Date(now.getFullYear(),now.getMonth(),now.getDate(),6,i*15)));}
 function getSunWindow(sc, wMap){
@@ -754,11 +738,11 @@ function getSunWindow(sc, wMap){
   // Filter by weather: keep only slots where weather allows sun
   const realSlots = sunSlots.filter(i => !isRainy(weatherForSlot(wMap,i)) && !isOvercast(weatherForSlot(wMap,i)));
   if(realSlots.length) return {from:slotToStr(realSlots[0]),to:slotToStr(realSlots[realSlots.length-1]),theoretical:false};
-  // All solar slots are blocked by weather â return theoretical with flag
+  // All solar slots are blocked by weather — return theoretical with flag
   return {from:slotToStr(sunSlots[0]),to:slotToStr(sunSlots[sunSlots.length-1]),theoretical:true};
 }
 
-// ââ ARC ââ
+// ── ARC ──
 const ARC_W=800, ARC_CY=62, ARC_RY=42;
 let _arcLeft=0, _arcUsable=ARC_W; // in SVG units, updated after paint
 
@@ -810,7 +794,7 @@ function updateArc(slot){
   updateCursor(slot);
 }
 
-// ââ TIMELINE CURSOR â aligns with arc dot using same mapping ââ
+// ── TIMELINE CURSOR — aligns with arc dot using same mapping ──
 function updateCursor(slot){
   const svgEl = document.getElementById('arcSvg');
   const slider = document.getElementById('timeSlider');
@@ -831,16 +815,16 @@ function updateCursor(slot){
     if (tabs) chip.style.top = (tabs.getBoundingClientRect().bottom + 2) + 'px';
   }
 }
-function getSunStatusText(slot){const h=slotToHour(slot);if(h<7)return'Nuit ð';if(h<8.5)return'Lever de soleil ð';if(h<11)return'MatinÃ©e â';if(h<14)return'Plein midi â';if(h<17)return'AprÃ¨s-midi â';if(h<19)return'LumiÃ¨re dorÃ©e ð';if(h<20.5)return'Coucher de soleil ð';return'SoirÃ©e ð¯';}
+function getSunStatusText(slot){const h=slotToHour(slot);if(h<7)return'Nuit 🌙';if(h<8.5)return'Lever de soleil 🌅';if(h<11)return'Matinée ☀';if(h<14)return'Plein midi ☀';if(h<17)return'Après-midi ☀';if(h<19)return'Lumière dorée 🌇';if(h<20.5)return'Coucher de soleil 🌆';return'Soirée 🕯';}
 
-// ââ WEATHER ââ
+// ── WEATHER ──
 const WMO={
-  0:['â','DÃ©gagÃ©'],1:['ð¤','Peu nuageux'],2:['â','Nuageux'],3:['â','Couvert'],
-  45:['ð«','Brouillard'],48:['ð«','Brouillard'],
-  51:['ð¦','Bruine'],53:['ð¦','Bruine'],55:['ð§','Bruine dense'],
-  61:['ð§','Pluie lÃ©gÃ¨re'],63:['ð§','Pluie'],65:['ð§','Forte pluie'],
-  71:['ð¨','Neige'],73:['ð¨','Neige'],80:['ð¦','Averses'],81:['ð§','Averses'],82:['â','Averses fortes'],
-  95:['â','Orage'],96:['â','Orage grÃªle'],99:['â','Orage grÃªle'],
+  0:['☀','Dégagé'],1:['🌤','Peu nuageux'],2:['⛅','Nuageux'],3:['☁','Couvert'],
+  45:['🌫','Brouillard'],48:['🌫','Brouillard'],
+  51:['🌦','Bruine'],53:['🌦','Bruine'],55:['🌧','Bruine dense'],
+  61:['🌧','Pluie légère'],63:['🌧','Pluie'],65:['🌧','Forte pluie'],
+  71:['🌨','Neige'],73:['🌨','Neige'],80:['🌦','Averses'],81:['🌧','Averses'],82:['⛈','Averses fortes'],
+  95:['⛈','Orage'],96:['⛈','Orage grêle'],99:['⛈','Orage grêle'],
 };
 
 // Returns true if weather code = precipitations
@@ -855,8 +839,8 @@ async function fetchWeather(lat,lng){
   try {
     const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=weather_code,temperature_2m&hourly=weather_code&timezone=auto&forecast_days=1`;
     const d=await(await fetch(url)).json();
-    const[icon,desc]=WMO[d.current.weather_code]||['ð¡','MÃ©tÃ©o'];
-    // Build hourly weather map: hour (0-23) â weather_code
+    const[icon,desc]=WMO[d.current.weather_code]||['🌡','Météo'];
+    // Build hourly weather map: hour (0-23) → weather_code
     const hourlyMap={};
     (d.hourly.time||[]).forEach((t,i)=>{
       const h=new Date(t).getHours();
@@ -866,7 +850,7 @@ async function fetchWeather(lat,lng){
     weatherCache[k]=result;
     return result;
   } catch {
-    return{icon:'â',desc:'MÃ©tÃ©o indisponible',temp:null,hourlyMap:{}};
+    return{icon:'—',desc:'Météo indisponible',temp:null,hourlyMap:{}};
   }
 }
 
@@ -876,27 +860,27 @@ function weatherForSlot(hourlyMap, slot){
   return hourlyMap[h] ?? hourlyMap[Object.keys(hourlyMap)[0]] ?? 0;
 }
 
-// Cross solar status with weather â effective status
+// Cross solar status with weather → effective status
 // Returns: 's'|'p'|'n' (solar only) + weather modifier
 function effectiveStatus(solarStatus, weatherCode){
   if(solarStatus==='n') return 'n';
-  if(isRainy(weatherCode)) return 'r';    // rain â solar would be sun but it's raining
-  if(isOvercast(weatherCode)) return 'c'; // cloudy â solar would be sun but clouded
+  if(isRainy(weatherCode)) return 'r';    // rain — solar would be sun but it's raining
+  if(isOvercast(weatherCode)) return 'c'; // cloudy — solar would be sun but clouded
   return solarStatus; // 's' or 'p', weather is fine
 }
 
-// ââ LOAD ââ
+// ── LOAD ──
 async function loadCommune(key){
   if(cache[key]){renderList();return;}
   const c=key==='geo'?{label:'Autour de moi',lat:userLat,lng:userLng,radius:1000}:COMMUNES[key];
-  document.getElementById('mainContent').innerHTML='<div class="state-msg"><div class="loader"></div>Chargement des terrassesâ¦</div>';
+  document.getElementById('mainContent').innerHTML='<div class="state-msg"><div class="loader"></div>Chargement des terrasses…</div>';
   const [jsonData,w] = await Promise.all([fetchFromJSON(key), fetchWeather(c.lat,c.lng)]);
   document.getElementById('weatherIcon').textContent=w.icon;
-  document.getElementById('contextText').textContent=w.temp!==null?`${w.desc} Â· ${w.temp}Â°`:w.desc;
+  document.getElementById('contextText').textContent=w.temp!==null?`${w.desc} · ${w.temp}°`:w.desc;
   window._weatherMap=w.hourlyMap||{};
   let cafes = jsonData.map(cf=>({...cf,dist:haversine(c.lat,c.lng,cf.lat,cf.lng)})).sort((a,b)=>a.dist-b.dist);
   if(key==='geo') cafes = cafes.filter(cf => cf.dist <= (c.radius||1000)*3).slice(0,80);
-  if(!cafes.length){document.getElementById('mainContent').innerHTML='<div class="state-msg">Aucune terrasse trouvÃ©e.</div>';return;}
+  if(!cafes.length){document.getElementById('mainContent').innerHTML='<div class="state-msg">Aucune terrasse trouvée.</div>';return;}
   cache[key]=cafes.map(cafe=>{
     const az = cafe.azimuth!=null ? cafe.azimuth : 180;
     return {...cafe,azimuth:az,schedule:getSchedule(cafe.lat,cafe.lng,az)};
@@ -904,7 +888,7 @@ async function loadCommune(key){
   renderList();
 }
 
-// ââ RENDER ââ
+// ── RENDER ──
 const azDir=az=>['N','NE','E','SE','S','SO','O','NO'][Math.round(az/45)%8];
 function renderList(){
   const slot=getActiveSlot(),data=cache[activeCommune];if(!data)return;
@@ -923,36 +907,36 @@ function renderList(){
   const sunN=cafes.filter(c=>c.statusNow==='s').length;
   const partN=cafes.filter(c=>c.statusNow==='p').length;
   const rainN=cafes.filter(c=>c.statusNow==='r').length;
-  const ref=displaySlot===null?'maintenant':'Ã  '+slotToStr(slot);
+  const ref=displaySlot===null?'maintenant':'à '+slotToStr(slot);
   // Weather banner
   let banner='';
-  if(isRainy(wCode)) banner=`<div class="weather-banner rain">ð§ Pluie ${ref} â positions thÃ©oriques affichÃ©es</div>`;
-  else if(isOvercast(wCode)&&cafes.some(c=>c.solarStatus==='s')) banner=`<div class="weather-banner cloud">â Ciel couvert ${ref} â ensoleillement thÃ©orique</div>`;
+  if(isRainy(wCode)) banner=`<div class="weather-banner rain">🌧 Pluie ${ref} — positions théoriques affichées</div>`;
+  else if(isOvercast(wCode)&&cafes.some(c=>c.solarStatus==='s')) banner=`<div class="weather-banner cloud">☁ Ciel couvert ${ref} — ensoleillement théorique</div>`;
   document.getElementById('weatherBanner').innerHTML=banner;
   let countHtml='';
   if(sunN>0) countHtml=`<span>${sunN}</span> terrasse${sunN>1?'s':''} au soleil ${ref}`;
-  else if(partN>0) countHtml=`<span>${partN}</span> partiellement ensoleillÃ©e${partN>1?'s':''} ${ref}`;
-  else if(rainN>0) countHtml=`Pluie ${ref} â <span>${rainN}</span> terrasse${rainN>1?'s':''} thÃ©oriquement ensoleillÃ©e${rainN>1?'s':''}`;
+  else if(partN>0) countHtml=`<span>${partN}</span> partiellement ensoleillée${partN>1?'s':''} ${ref}`;
+  else if(rainN>0) countHtml=`Pluie ${ref} — <span>${rainN}</span> terrasse${rainN>1?'s':''} théoriquement ensoleillée${rainN>1?'s':''}`;
   else countHtml=`Aucune terrasse au soleil ${ref}`;
   document.getElementById('sunCount').innerHTML=countHtml;
-  const labels={s:'Plein soleil',p:'Partiel',n:"Ã l'ombre",r:'ð§ Pluie',c:'â Couvert'};
+  const labels={s:'Plein soleil',p:'Partiel',n:"À l'ombre",r:'🌧 Pluie',c:'☁ Couvert'};
   document.getElementById('mainContent').innerHTML='<div class="cafe-list">'+cafes.map((cafe,idx)=>{
     const win=getSunWindow(cafe.schedule,wMap),bar=cafe.schedule.map((s,i)=>`<div class="ds ${s}${i===slot?' active':''}"></div>`).join('');
     let expand;
     if(win && !win.theoretical){
-      expand=`<div class="sun-window">Soleil de <strong>${win.from}</strong> Ã  <strong>${win.to}</strong></div>`;
+      expand=`<div class="sun-window">Soleil de <strong>${win.from}</strong> à <strong>${win.to}</strong></div>`;
     } else if(win && win.theoretical){
-      expand=`<div class="sun-window theoretical">â ThÃ©orique : <strong>${win.from}</strong> â <strong>${win.to}</strong><br><span class="sun-window-note">Soleil possible si le temps s'amÃ©liore</span></div>`;
+      expand=`<div class="sun-window theoretical">☁ Théorique : <strong>${win.from}</strong> – <strong>${win.to}</strong><br><span class="sun-window-note">Soleil possible si le temps s'améliore</span></div>`;
     } else {
       expand=`<div class="sun-window" style="opacity:0.3">Pas d'ensoleillement direct</div>`;
     }
     const cardCls=["s","p"].includes(cafe.statusNow)?cafe.statusNow:"n";
-    return`<div class="cafe-card ${cardCls}" onclick="toggleCard(${idx})"><div><div class="cafe-name-row"><div class="cafe-name">${cafe.name}</div>${cafe.rooftop?'<div class="rooftop-tag">ð rooftop</div>':''}${cafe.curated?'<div class="curated-dot"></div>':''}${cafe.address?`<div class="cafe-address">${cafe.address}</div><button class="copy-btn" onclick="copyAddress(event,'${cafe.name.replace(/'/g,"\\'")}${cafe.address?', '+cafe.address.replace(/'/g,"\\'"):''}')">â</button>`:''}</div><div class="cafe-meta-row">${cafe.dist!==undefined?`<div class="cafe-dist">${fmtDist(cafe.dist)}</div>`:''}</div></div><div class="sun-badge ${cafe.statusNow}">${labels[cafe.statusNow]}</div><div class="day-bar-mini">${bar}</div><div class="card-expanded" id="expand-${idx}"><div class="expand-ticks"><span>6h</span><span>10h</span><span>14h</span><span>18h</span><span>22h</span></div>${expand}<div class="azimuth-tag">FaÃ§ade ${azDir(cafe.azimuth)} Â· ${cafe.azimuth}Â°</div></div></div>`;
+    return`<div class="cafe-card ${cardCls}" onclick="toggleCard(${idx})"><div><div class="cafe-name-row"><div class="cafe-name">${cafe.name}</div>${cafe.rooftop?'<div class="rooftop-tag">🌇 rooftop</div>':''}${cafe.curated?'<div class="curated-dot"></div>':''}${cafe.address?`<div class="cafe-address">${cafe.address}</div><button class="copy-btn" onclick="copyAddress(event,'${cafe.name.replace(/'/g,"\\'")}${cafe.address?', '+cafe.address.replace(/'/g,"\\'"):''}')">⎘</button>`:''}</div><div class="cafe-meta-row">${cafe.dist!==undefined?`<div class="cafe-dist">${fmtDist(cafe.dist)}</div>`:''}</div></div><div class="sun-badge ${cafe.statusNow}">${labels[cafe.statusNow]}</div><div class="day-bar-mini">${bar}</div><div class="card-expanded" id="expand-${idx}"><div class="expand-ticks"><span>6h</span><span>10h</span><span>14h</span><span>18h</span><span>22h</span></div>${expand}<div class="azimuth-tag">Façade ${azDir(cafe.azimuth)} · ${cafe.azimuth}°</div></div></div>`;
   }).join('')+'</div>';
 }
 function toggleCard(idx){document.getElementById(`expand-${idx}`).classList.toggle('open');}
 
-// ââ SLIDER ââ
+// ── SLIDER ──
 function onSliderInput(){
   const val=parseInt(document.getElementById('timeSlider').value);
   displaySlot=val;
@@ -962,15 +946,15 @@ function onSliderInput(){
   if(cache[activeCommune])renderList();
 }
 
-// ââ NAV ââ
+// ── NAV ──
 function selectCommune(key){activeCommune=key;document.querySelectorAll('.commune-tab').forEach(t=>t.classList.toggle('active',t.dataset.commune===key));loadCommune(key);}
-function requestGeo(){if(!navigator.geolocation)return;document.getElementById('geoBtn').textContent='â³ â¦';navigator.geolocation.getCurrentPosition(pos=>{userLat=pos.coords.latitude;userLng=pos.coords.longitude;document.getElementById('geoBtn').textContent='â LocalisÃ©';document.getElementById('geoBtn').classList.add('located');selectGeo();},()=>{document.getElementById('geoBtn').textContent='ð Me localiser';},{enableHighAccuracy:true,timeout:12000});}
+function requestGeo(){if(!navigator.geolocation)return;document.getElementById('geoBtn').textContent='⟳ …';navigator.geolocation.getCurrentPosition(pos=>{userLat=pos.coords.latitude;userLng=pos.coords.longitude;document.getElementById('geoBtn').textContent='✓ Localisé';document.getElementById('geoBtn').classList.add('located');selectGeo();},()=>{document.getElementById('geoBtn').textContent='📍 Me localiser';},{enableHighAccuracy:true,timeout:12000});}
 function selectGeo(){if(!userLat){requestGeo();return;}activeCommune='geo';document.querySelectorAll('.commune-tab').forEach(t=>t.classList.toggle('active',t.dataset.commune==='geo'));loadCommune('geo');}
 
-// ââ COPY ââ
-function copyAddress(e,text){e.stopPropagation();navigator.clipboard.writeText(text).then(()=>{const btn=e.currentTarget;btn.classList.add('copied');btn.textContent='â';const t=document.getElementById('copyToast');t.classList.add('show');setTimeout(()=>{btn.classList.remove('copied');btn.textContent='â';t.classList.remove('show');},1800);});}
+// ── COPY ──
+function copyAddress(e,text){e.stopPropagation();navigator.clipboard.writeText(text).then(()=>{const btn=e.currentTarget;btn.classList.add('copied');btn.textContent='✓';const t=document.getElementById('copyToast');t.classList.add('show');setTimeout(()=>{btn.classList.remove('copied');btn.textContent='⎘';t.classList.remove('show');},1800);});}
 
-// ââ INIT ââ
+// ── INIT ──
 function initArc() {
   drawArc();
   const initSlot = currentSlot();
@@ -986,35 +970,35 @@ if (document.fonts && document.fonts.ready) {
   window.addEventListener('load', () => requestAnimationFrame(initArc));
 }
 window.addEventListener('resize', () => { computeArcMapping(); drawArc(); updateArc(getActiveSlot()); });
-fetchWeather(COMMUNES['ixelles'].lat,COMMUNES['ixelles'].lng).then(w=>{document.getElementById('weatherIcon').textContent=w.icon;document.getElementById('contextText').textContent=w.temp!==null?`${w.desc} Â· ${w.temp}Â°`:w.desc;});
+fetchWeather(COMMUNES['ixelles'].lat,COMMUNES['ixelles'].lng).then(w=>{document.getElementById('weatherIcon').textContent=w.icon;document.getElementById('contextText').textContent=w.temp!==null?`${w.desc} · ${w.temp}°`:w.desc;});
 loadCommune('ixelles');
 </script>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-credit">
-    with ð©· by <a href="https://www.linkedin.com/in/ol-dl" target="_blank" rel="noopener">ol_dl</a>
+    with 🩷 by <a href="https://www.linkedin.com/in/ol-dl" target="_blank" rel="noopener">ol_dl</a>
   </div>
-  <button class="footer-suggest" onclick="openSuggest()">+ SuggÃ©rer une terrasse</button>
+  <button class="footer-suggest" onclick="openSuggest()">+ Suggérer une terrasse</button>
 </footer>
 
 <!-- SUGGEST MODAL -->
 <div class="modal-overlay" id="suggestModal" onclick="closeSuggestOutside(event)">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-title">SuggÃ©rer une terrasse</div>
-      <button class="modal-close" onclick="closeSuggest()">â</button>
+      <div class="modal-title">Suggérer une terrasse</div>
+      <button class="modal-close" onclick="closeSuggest()">✕</button>
     </div>
     <div class="modal-desc">
-      Tu connais une terrasse ensoleillÃ©e qui manque Ã  la liste ?<br>
-      Dis-nous tout â on vÃ©rifie et on ajoute.
+      Tu connais une terrasse ensoleillée qui manque à la liste ?<br>
+      Dis-nous tout — on vérifie et on ajoute.
     </div>
     <div class="modal-fields">
-      <input class="modal-field" id="suggestName" placeholder="Nom de l'Ã©tablissement" type="text">
+      <input class="modal-field" id="suggestName" placeholder="Nom de l'établissement" type="text">
       <input class="modal-field" id="suggestAddress" placeholder="Adresse (rue, commune)" type="text">
-      <input class="modal-field" id="suggestNote" placeholder="Note (optionnel) â orientation, terrasse couverteâ¦" type="text">
+      <input class="modal-field" id="suggestNote" placeholder="Note (optionnel) — orientation, terrasse couverte…" type="text">
     </div>
-    <button class="modal-send" onclick="sendSuggest()">Envoyer la suggestion â</button>
+    <button class="modal-send" onclick="sendSuggest()">Envoyer la suggestion →</button>
   </div>
 </div>
 
@@ -1033,12 +1017,12 @@ function sendSuggest() {
   const address = document.getElementById('suggestAddress').value.trim();
   const note    = document.getElementById('suggestNote').value.trim();
   if (!name) { document.getElementById('suggestName').focus(); return; }
-  const subject = encodeURIComponent('SunSpots Â· Suggestion terrasse : ' + name);
+  const subject = encodeURIComponent('SunSpots · Suggestion terrasse : ' + name);
   const body    = encodeURIComponent(
     'Nom : ' + name + '\n' +
-    'Adresse : ' + (address || 'â') + '\n' +
-    'Note : ' + (note || 'â') + '\n\n' +
-    '(envoyÃ© depuis SunSpots)'
+    'Adresse : ' + (address || '—') + '\n' +
+    'Note : ' + (note || '—') + '\n\n' +
+    '(envoyé depuis SunSpots)'
   );
   window.location.href = 'mailto:hello@appvelvet.com?subject=' + subject + '&body=' + body;
   closeSuggest();
