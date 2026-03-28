@@ -890,6 +890,7 @@ function effectiveStatus(solarStatus, weatherCode){
 async function loadCommune(key){
   if(cache[key]){renderList();return;}
   const c=key==='geo'?{label:'Autour de moi',lat:userLat,lng:userLng,radius:1000}:COMMUNES[key];
+  if (key === 'antwerpen') { const atData = await fetchFromAirtable('antwerpen'); const w = await fetchWeather(c.lat, c.lng); document.getElementById('weatherIcon').textContent=w.icon; document.getElementById('contextText').textContent=w.temp!==null?w.desc+' · '+w.temp+'°':w.desc; window._weatherMap=w.hourlyMap||{}; if(!atData.length){document.getElementById('mainContent').innerHTML='<div class="state-msg">Aucune terrasse trouvée.</div>';return;} document.getElementById('mainContent').innerHTML='<div class="state-msg"><div class="loader"></div>Calcul de la lumière…</div>'; const sunSeries=buildSunAzimuthSeries(c.lat,c.lng); cache[key]=atData.map(cafe=>{const az=Number.isFinite(cafe.azimuth)?cafe.azimuth:azimuthFromRoads(cafe.lat,cafe.lng,[]);return{...cafe,dist:haversine(c.lat,c.lng,cafe.lat,cafe.lng),azimuth:az,schedule:getScheduleFast(az,sunSeries)};});renderList();return;}
   document.getElementById('mainContent').innerHTML='<div class="state-msg"><div class="loader"></div>Chargement des terrasses…</div>';
   const [jsonData,w] = await Promise.all([fetchFromJSON(key), fetchWeather(c.lat,c.lng)]);
   document.getElementById('weatherIcon').textContent=w.icon;
