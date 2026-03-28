@@ -645,6 +645,7 @@ async function _fetchAllBrussels() {
 }
 
 async function fetchFromAirtable(cityKey) {
+  if (cityKey === 'antwerpen') { return await fetchAirtableByFormula('{city}="antwerpen"', 'airtable:antwerpen'); }
   if (_BXL_COMMUNES.includes(cityKey)) {
     const all = await _fetchAllBrussels();
     const c = COMMUNES[cityKey];
