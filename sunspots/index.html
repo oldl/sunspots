@@ -455,75 +455,7 @@ const COMMUNES = {
   'antwerpen':    {label:'Anvers',     lat:51.2213,lng:4.4051,radius:1500},
 };
 
-const CURATED = [
-  {name:"La Machine",             address:"Place Saint-Géry 2, 1000",                   commune:"centre",       lat:50.8481,lng:4.3460},
-  {name:"Le Grand Café",          address:"Bd Anspach 78, 1000",                        commune:"centre",       lat:50.8490,lng:4.3488},
-  {name:"Scott's Bar",            address:"Rue Montagne aux Herbes Potagères 2, 1000",  commune:"centre",       lat:50.8484,lng:4.3524},
-  {name:"Zebra",                  address:"Place Saint-Géry 33, 1000",                  commune:"centre",       lat:50.8479,lng:4.3455},
-  {name:"Café Walvis",            address:"Rue Antoine Dansaert 209, 1000",             commune:"centre",       lat:50.8527,lng:4.3431},
-  {name:"Bélier",                 address:"Borgwal 9, 1000",                            commune:"centre",       lat:50.8486,lng:4.3469},
-  {name:"The Purple Rose",        address:"Rue du Marché aux Herbes 97, 1000",          commune:"centre",       lat:50.8483,lng:4.3530},
-  {name:"The Wild Geese",         address:"Avenue Livingstone 2, 1000",                 commune:"centre",       lat:50.8430,lng:4.3715},
-  {name:"Bar du Canal",           address:"Rue Antoine Dansaert 208, 1000",             commune:"centre",       lat:50.8558,lng:4.3425},
-  {name:"Vertigo",                address:"Rue de Rollebeek 7, 1000",                   commune:"centre",       lat:50.8444,lng:4.3545},
-  {name:"Affligem Cafe",          address:"Bd Anspach 81, 1000",                        commune:"centre",       lat:50.8488,lng:4.3489},
-  {name:"Le Perroquet",           address:"Rue Watteeu 31, 1000",                       commune:"centre",       lat:50.8437,lng:4.3557},
-  {name:"Flamingo",               address:"Rue de Laken 177, 1000",                     commune:"centre",       lat:50.8595,lng:4.3490},
-  {name:"Arthur Orlans",          address:"Rue Antoine Dansaert 67, 1000",              commune:"centre",       lat:50.8510,lng:4.3435},
-  {name:"Au Vieux Saint-Antoine", address:"Rue du Marché au Charbon 25, 1000",          commune:"centre",       lat:50.8469,lng:4.3476},
-  {name:"Mappa Mundo",            address:"Rue du Pont de la Carpe 2, 1000",            commune:"centre",       lat:50.8478,lng:4.3456},
-  {name:"Delirium Café",          address:"Impasse de la Fidélité 4, 1000",             commune:"centre",       lat:50.8490,lng:4.3527},
-  {name:"Delirium Monasterium",   address:"Rue des Bouchers 10, 1000",                  commune:"centre",       lat:50.8484,lng:4.3528},
-  {name:"Marcelle",               address:"Place du Samedi 15, 1000",                   commune:"centre",       lat:50.8564,lng:4.3457},
-  {name:"La Fleur en Papier Doré",address:"Rue des Alexiens 55, 1000",                  commune:"centre",       lat:50.8443,lng:4.3515},
-  {name:"Café Floréo",            address:"Rue des Riches Claires 19, 1000",            commune:"centre",       lat:50.8502,lng:4.3463},
-  {name:"Barbeton",               address:"Rue Antoine Dansaert 114, 1000",             commune:"centre",       lat:50.8522,lng:4.3423},
-  {name:"Café Novo",              address:"Place de la Vieille Halle aux Blés 37, 1000",commune:"centre",       lat:50.8463,lng:4.3517},
-  {name:"La Pharmacie Anglaise",  address:"Coudenberg 66, 1000",                        commune:"centre",       lat:50.8448,lng:4.3611},
-  {name:"Cartagena Salsa Bar",    address:"Rue du Marché au Charbon 70, 1000",          commune:"centre",       lat:50.8463,lng:4.3478},
-  {name:"Little Delirium",        address:"Rue du Marché aux Fromages 9, 1000",         commune:"centre",       lat:50.8486,lng:4.3524},
-  {name:"Bier Circus",            address:"Rue de l'Enseignement 57, 1000",             commune:"centre",       lat:50.8520,lng:4.3600},
-  {name:"Cobra bar-gallery",      address:"Rue des Chartreux 1, 1000",                  commune:"centre",       lat:50.8490,lng:4.3455},
-  {name:"Grap Wine Bar",          address:"Rue Wappers 15, 1000",                       commune:"centre",       lat:50.8450,lng:4.3540},
-  {name:"Mezzo",                  address:"Borgwal 18, 1000",                           commune:"centre",       lat:50.8485,lng:4.3469},
-  {name:"Che Habana Café",        address:"Rue des Harengs 16, 1000",                   commune:"centre",       lat:50.8487,lng:4.3530},
-  {name:"Monk",                   address:"Rue Sainte-Catherine 42, 1000",              commune:"centre",       lat:50.8508,lng:4.3472},
-  {name:"La Brocante",            address:"Rue Blaes 170, 1000",                        commune:"centre",       lat:50.8411,lng:4.3498},
-  {name:"Jungle Bar",             address:"Rue des Pierres 52, 1000",                   commune:"centre",       lat:50.8494,lng:4.3523},
-  {name:"LOFT",                   address:"Rue de Namur 51, 1000",                      commune:"centre",       lat:50.8448,lng:4.3610},
-  {name:"WASBAR",                 address:"Rue Henri Maus 45, 1000",                    commune:"centre",       lat:50.8475,lng:4.3498},
-  {name:"La Lunette",             address:"Place de la Monnaie 3, 1000",                commune:"centre",       lat:50.8517,lng:4.3555},
-  {name:"Guingette Maurice",      address:"Parc du Cinquantenaire, 1000",               commune:"centre",       lat:50.8415,lng:4.3946},
-  {name:"Le Jardin Rooftop",      address:"Rue du Marché aux Poulets 7, 1000",          commune:"centre",       lat:50.8502,lng:4.3525,rooftop:true},
-  {name:"Le COOP",                address:"Avenue du Port 86C, 1000",                   commune:"centre",       lat:50.8630,lng:4.3380,rooftop:true},
-  {name:"Cospaia Rooftop",        address:"Rue de la Régence 2, 1000",                  commune:"centre",       lat:50.8418,lng:4.3602,rooftop:true},
-  {name:"Le Tavernier",           address:"Chaussée de Boondael 445, 1050",             commune:"ixelles",      lat:50.8117,lng:4.3869},
-  {name:"Victoria Bar",           address:"Avenue de la Toison d'Or 11, 1050",          commune:"ixelles",      lat:50.8353,lng:4.3641},
-  {name:"Wine Bar Mouchart",      address:"Rue Eugène Cattoir 11, 1050",                commune:"ixelles",      lat:50.8219,lng:4.3765},
-  {name:"Loui Bar & Restaurant",  address:"Avenue Louise 71, 1050",                     commune:"ixelles",      lat:50.8345,lng:4.3624},
-  {name:"Alice Cocktail Bar",     address:"Avenue Louise 190, 1050",                    commune:"ixelles",      lat:50.8296,lng:4.3708},
-  {name:"De Haus",                address:"Chaussée d'Ixelles 183, 1050",               commune:"ixelles",      lat:50.8271,lng:4.3784},
-  {name:"L'Amour Fou",            address:"Chaussée d'Ixelles 185, 1050",               commune:"ixelles",      lat:50.8271,lng:4.3785},
-  {name:"O Artista",              address:"Rue de la Brasserie 98A, 1050",              commune:"ixelles",      lat:50.8280,lng:4.3820},
-  {name:"Choco Bar",              address:"Chaussée d'Ixelles 149, 1050",               commune:"ixelles",      lat:50.8280,lng:4.3773},
-  {name:"Tapas Y Mas",            address:"Chaussée de Boondael 372, 1050",             commune:"ixelles",      lat:50.8138,lng:4.3858},
-  {name:"Etiquette Wines",        address:"Avenue Emile De Mot 19, 1050",               commune:"ixelles",      lat:50.8252,lng:4.3770},
-  {name:"Café Flora",             address:"Parvis de Saint-Gilles 16A, 1060",           commune:"saint-gilles", lat:50.8333,lng:4.3441},
-  {name:"Brasserie de l'Union",   address:"Parvis de Saint-Gilles 55, 1060",            commune:"saint-gilles", lat:50.8334,lng:4.3438},
-  {name:"Maison du Peuple",       address:"Parvis Saint-Gilles 39, 1060",               commune:"saint-gilles", lat:50.8330,lng:4.3435},
-  {name:"Le Dillens",             address:"Place Julien Dillens 11, 1060",              commune:"saint-gilles", lat:50.8313,lng:4.3433},
-  {name:"La Trinquette",          address:"Rue de l'Aqueduc 3, 1060",                   commune:"saint-gilles", lat:50.8274,lng:4.3493},
-  {name:"Rubis Wine Bar",         address:"Avenue Adolphe Demeur 34, 1060",             commune:"saint-gilles", lat:50.8303,lng:4.3473},
-  {name:"Café La Pompe",          address:"Chaussée de Waterloo 211, 1060",             commune:"saint-gilles", lat:50.8262,lng:4.3520},
-  {name:"Cauri Bar",              address:"Chaussée d'Alsemberg 163, 1190",             commune:"forest",       lat:50.8148,lng:4.3367},
-  {name:"Bar à Nelson",           address:"Avenue Wielemans Ceuppens 128, 1190",        commune:"forest",       lat:50.8186,lng:4.3311},
-  {name:"Wiels Terrasse",         address:"Avenue Van Volxem 354, 1190",                commune:"forest",       lat:50.8218,lng:4.3322,rooftop:true},
-  {name:"L'Amère à boire",        address:"Chaussée d'Alsemberg 1008, 1180",            commune:"uccle",        lat:50.7861,lng:4.3558},
-  {name:"Taverne Brusilia",       address:"Avenue Louis Bertrand 127, 1030",            commune:"schaerbeek",   lat:50.8674,lng:4.3812},
-  {name:"Bar du Gaspi",           address:"Chaussée de Haecht 309, 1030",               commune:"schaerbeek",   lat:50.8700,lng:4.3750},
-  {name:"Le Barboteur",           address:"Avenue Louis Bertrand 23, 1030",             commune:"schaerbeek",   lat:50.8621,lng:4.3778},
-  {name:"New Majestic Bar",       address:"Chaussée de Louvain 397, 1030",              commune:"schaerbeek",   lat:50.8712,lng:4.3830},
-];
+const CURATED = []; // data comes from JSON;
 
 // ── STATE ──
 let activeCommune='ixelles', userLat=null, userLng=null, displaySlot=null;
@@ -640,7 +572,7 @@ async function _fetchAllBrussels() {
     return out;
   } catch(e) {
     console.warn('Airtable fallback local:', e.message);
-    return CURATED;
+return [];
   }
 }
 
@@ -689,7 +621,7 @@ async function fetchFromAirtable(cityKey) {
     _atCache[cityKey] = out;
     return out;
   } catch(e) {
-    return CURATED.filter(c => c.commune === cityKey);
+    return [];
   }
 }
 
@@ -729,7 +661,7 @@ else if (payload.records) { raw = payload.records; }
     return out;
   } catch(e) {
     console.warn('JSON fallback local:', e.message);
-    return CURATED.map(r => ({...r, azimuth:r.azimuth||null, rooftop:!!r.rooftop, curated:true}));
+    return [];
   }
 }
 
