@@ -703,7 +703,14 @@ async function _fetchAllBrusselsJSON(){
 
 let raw = [];
 if (payload.bruxelles && typeof payload.bruxelles === 'object') {
-  Object.values(payload.bruxelles).forEach(spots => { if (Array.isArray(spots)) raw = raw.concat(spots); });
+  const seen = new Set();
+  Object.values(payload.bruxelles).forEach(spots => {
+    if (!Array.isArray(spots)) return;
+    spots.forEach(s => {
+      const key = (s.name||'') + '|' + (s.lat||'') + '|' + (s.lng||'');
+      if (!seen.has(key)) { seen.add(key); raw.push(s); }
+    });
+  });
 } else if (Array.isArray(payload)) { raw = payload; }
 else if (payload.records) { raw = payload.records; }
     const out = raw.map(r => ({
