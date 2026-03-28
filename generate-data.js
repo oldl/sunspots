@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * SunSpots — generate-data.js
- * Génère sunspots-data.json depuis Airtable
+ * SunSpots â generate-data.js
+ * GÃ©nÃ¨re sunspots-data.json depuis Airtable
  * Usage: node generate-data.js
- * Dépose le JSON généré dans le même dossier que index.html sur Netlify
+ * DÃ©pose le JSON gÃ©nÃ©rÃ© dans le mÃªme dossier que index.html sur Netlify
  */
 
 const TOKEN = 'patZ1K7A0mOO4CZ9n.0fe086e81531f3af66988cc7b57c48ebb726b46acd9373c1e80e2507d6cf2954';
@@ -31,11 +31,11 @@ async function fetchAllAirtable() {
     records = records.concat(d.records || []);
     offset = d.offset || null;
     page++;
-    process.stdout.write(`\r  page ${page} — ${records.length} records`);
+    process.stdout.write(`\r  page ${page} â ${records.length} records`);
     await sleep(250);
   } while (offset);
 
-  console.log(`\n✓ ${records.length} records fetched`);
+  console.log(`\nâ ${records.length} records fetched`);
   return records;
 }
 
@@ -75,7 +75,7 @@ async function main() {
     rooftop: Boolean(r.fields.rooftop),
   })).filter(t => Number.isFinite(t.lat) && Number.isFinite(t.lng) && t.name);
 
-  console.log(`✓ ${all.length} valid records after normalization`);
+  console.log(`â ${all.length} valid records after normalization`);
 
   // Partition by commune
   const byCommune = {};
@@ -91,11 +91,11 @@ async function main() {
     bruxelles: byCommune,
   };
 
-  const outPath = './sunspots-data.json';
+  const outPath = './sunspots/sunspots-data.json';
   fs.writeFileSync(outPath, JSON.stringify(output));
   const size = (fs.statSync(outPath).size / 1024).toFixed(1);
-  console.log(`\n✅ ${outPath} generated — ${size}kb`);
-  console.log('   → Dépose ce fichier avec index.html sur Netlify');
+  console.log(`\nâ ${outPath} generated â ${size}kb`);
+  console.log('   â DÃ©pose ce fichier avec index.html sur Netlify');
 }
 
 main().catch(e => { console.error('Error:', e.message); process.exit(1); });
