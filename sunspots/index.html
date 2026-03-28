@@ -701,7 +701,11 @@ async function _fetchAllBrusselsJSON(){
       return r.json();
     });
 
-    const raw = Array.isArray(payload) ? payload : (payload.records || []);
+let raw = [];
+if (payload.bruxelles && typeof payload.bruxelles === 'object') {
+  Object.values(payload.bruxelles).forEach(spots => { if (Array.isArray(spots)) raw = raw.concat(spots); });
+} else if (Array.isArray(payload)) { raw = payload; }
+else if (payload.records) { raw = payload.records; }
     const out = raw.map(r => ({
       name: r.name || r.Name || null,
       address: r.address || null,
