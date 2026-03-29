@@ -805,7 +805,7 @@ async function fetchWeather(lat,lng){
   const k=`${lat.toFixed(2)},${lng.toFixed(2)}`;
   if(weatherCache[k]) return weatherCache[k];
   try {
-    const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=weather_code,temperature_2m&hourly=weather_code&timezone=auto&forecast_days=1`;
+    const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=weather_code,temperature_2m,wind_speed_10m,wind_direction_10m&hourly=weather_code&timezone=auto&forecast_days=1`;
     const d=await(await fetch(url)).json();
     const[icon,desc]=WMO[d.current.weather_code]||['🌡','Météo'];
     // Build hourly weather map: hour (0-23) → weather_code
@@ -814,7 +814,7 @@ async function fetchWeather(lat,lng){
       const h=new Date(t).getHours();
       hourlyMap[h]=d.hourly.weather_code[i];
     });
-    const result={icon,desc,temp:Math.round(d.current.temperature_2m),hourlyMap};
+    const dirs=['N','NE','E','SE','S','SO','O','NO'];const windDir=dirs[Math.round(d.current.wind_direction_10m/45)%8];const windSpeed=Math.round(d.current.wind_speed_10m);const result={icon,desc,temp:Math.round(d.current.temperature_2m),windSpeed,windDir,hourlyMap};
     weatherCache[k]=result;
     return result;
   } catch {
@@ -844,7 +844,7 @@ async function loadCommune(key){
   document.getElementById('mainContent').innerHTML='<div class="state-msg"><div class="loader"></div>Chargement des terrasses…</div>';
   const [jsonData,w] = await Promise.all([fetchFromJSON(key), fetchWeather(c.lat,c.lng)]);
   document.getElementById('weatherIcon').textContent=w.icon;
-  document.getElementById('contextText').textContent=w.temp!==null?`${w.desc} · ${w.temp}°`:w.desc;
+  document.getElementById('contextText').textContent=w.temp!==null?`${w.desc} · ${w.temp}°${w.windSpeed?` · ${w.windDir} ${w.windSpeed} km/h`:''}`:w.desc;
   window._weatherMap=w.hourlyMap||{};
   let cafes = jsonData.map(cf=>({...cf,dist:haversine(c.lat,c.lng,cf.lat,cf.lng)})).sort((a,b)=>a.dist-b.dist);
   if(key==='geo') cafes = cafes.filter(cf => cf.dist <= (c.radius||1000)*3).slice(0,80);
