@@ -213,6 +213,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 .sun-window.theoretical strong { color: var(--warm-mid); }
 .sun-window-note { font-size: 0.46rem; opacity: 0.55; display: block; margin-top: 0.15rem; letter-spacing: 0.04em; }
 
+.street-type-tag { font-size:0.42rem; color:var(--warm-mid); opacity:0.52; letter-spacing:0.04em; margin-top:0.08rem; }
 .azimuth-tag { font-size:0.44rem; color:rgba(154,122,90,0.22); margin-top:0.17rem; letter-spacing:0.05em; }
 
 .cafe-name-row { display:flex; align-items:baseline; gap:0.5rem; flex-wrap:wrap; }
@@ -857,6 +858,7 @@ async function loadCommune(key){
 }
 
 // ── RENDER ──
+const stLabel=st=>{const m={pieton:'🚶 Piéton',zone_rencontre:'🏘 Zone 20',rue:'🏠 Rue 30',avenue:'🛣 Avenue',boulevard:'🚗 Boulevard',grand_boulevard:'🚗 Grand Bd'};return m[st]||null;};
 const azDir=az=>['N','NE','E','SE','S','SO','O','NO'][Math.round(az/45)%8];
 function renderList(){
   const slot=getActiveSlot(),data=cache[activeCommune];if(!data)return;
@@ -899,7 +901,7 @@ function renderList(){
       expand=`<div class="sun-window" style="opacity:0.3">Pas d'ensoleillement direct</div>`;
     }
     const cardCls=["s","p"].includes(cafe.statusNow)?cafe.statusNow:"n";
-    return`<div class="cafe-card ${cardCls}" onclick="toggleCard(${idx})"><div><div class="cafe-name-row"><div class="cafe-name">${cafe.name}</div>${cafe.rooftop?'<div class="rooftop-tag">🌇 rooftop</div>':''}${cafe.curated?'<div class="curated-dot"></div>':''}${cafe.address?`<div class="cafe-address">${cafe.address}</div><button class="copy-btn" onclick="copyAddress(event,'${cafe.name.replace(/'/g,"\\'")}${cafe.address?', '+cafe.address.replace(/'/g,"\\'"):''}')">⎘</button>`:''}</div><div class="cafe-meta-row">${cafe.dist!==undefined?`<div class="cafe-dist">${fmtDist(cafe.dist)}</div>`:''}</div></div><div class="sun-badge ${cafe.statusNow}">${labels[cafe.statusNow]}</div><div class="day-bar-mini">${bar}</div><div class="card-expanded" id="expand-${idx}"><div class="expand-ticks"><span>6h</span><span>10h</span><span>14h</span><span>18h</span><span>22h</span></div>${expand}<div class="azimuth-tag">Façade ${azDir(cafe.azimuth)} · ${cafe.azimuth}°</div></div></div>`;
+    return`<div class="cafe-card ${cardCls}" onclick="toggleCard(${idx})"><div><div class="cafe-name-row"><div class="cafe-name">${cafe.name}</div>${cafe.rooftop?'<div class="rooftop-tag">🌇 rooftop</div>':''}${cafe.curated?'<div class="curated-dot"></div>':''}${cafe.address?`<div class="cafe-address">${cafe.address}</div><button class="copy-btn" onclick="copyAddress(event,'${cafe.name.replace(/'/g,"\\'")}${cafe.address?', '+cafe.address.replace(/'/g,"\\'"):''}')">⎘</button>`:''}</div><div class="cafe-meta-row">${cafe.dist!==undefined?`<div class="cafe-dist">${fmtDist(cafe.dist)}</div>`:''}</div></div><div class="sun-badge ${cafe.statusNow}">${labels[cafe.statusNow]}</div><div class="day-bar-mini">${bar}</div><div class="card-expanded" id="expand-${idx}"><div class="expand-ticks"><span>6h</span><span>10h</span><span>14h</span><span>18h</span><span>22h</span></div>${expand}<div class="azimuth-tag">Façade ${azDir(cafe.azimuth)} · ${cafe.azimuth}°</div>${cafe.street_type&&stLabel(cafe.street_type)?`<div class="street-type-tag">${stLabel(cafe.street_type)}</div>`:''}</div></div>`;
   }).join('')+'</div>';
 }
 function toggleCard(idx){document.getElementById(`expand-${idx}`).classList.toggle('open');}
