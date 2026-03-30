@@ -663,6 +663,7 @@ else if (payload.records) { raw = payload.records; }
       lng: Number(r.lng),
       azimuth: Number.isFinite(Number(r.azimuth)) ? Number(r.azimuth) : null,
       rooftop: !!r.rooftop,
+      street_type: r.street_type || null,
       curated: true,
     })).filter(t => Number.isFinite(t.lat) && Number.isFinite(t.lng) && t.name);
 
