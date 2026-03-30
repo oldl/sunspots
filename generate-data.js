@@ -72,8 +72,10 @@ async function main() {
     lng:     Number(r.fields.lng),
     azimuth: Number.isFinite(Number(r.fields.azimuth)) ? Number(r.fields.azimuth) : null,
     rooftop: Boolean(r.fields.rooftop),
+    street_type: r.fields.street_type || null,
   })).filter(t => Number.isFinite(t.lat) && Number.isFinite(t.lng) && t.name);
-street_type: r.fields.street_type || null,
+  
+  street_type: rec.fields.street_type || null,
   console.log(`â ${all.length} valid records after normalization`);
 
   // Partition by commune
