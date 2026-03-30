@@ -18,8 +18,7 @@ async function fetchAllAirtable() {
     filterByFormula: '{city}="bruxelles"',
     pageSize: '100',
   });
-  ['Name','address','lat','lng','azimuth','rooftop'].forEach(f => params.append('fields[]', f));
-
+['Name','address','lat','lng','azimuth','rooftop','street_type'].forEach(f => params.append('fields[]', f));
   let records = [], offset = null, page = 0;
   do {
     if (offset) params.set('offset', offset); else params.delete('offset');
@@ -74,7 +73,7 @@ async function main() {
     azimuth: Number.isFinite(Number(r.fields.azimuth)) ? Number(r.fields.azimuth) : null,
     rooftop: Boolean(r.fields.rooftop),
   })).filter(t => Number.isFinite(t.lat) && Number.isFinite(t.lng) && t.name);
-
+street_type: r.fields.street_type || null,
   console.log(`â ${all.length} valid records after normalization`);
 
   // Partition by commune
