@@ -215,12 +215,11 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 .sun-window-note { font-size: 0.46rem; opacity: 0.55; display: block; margin-top: 0.15rem; letter-spacing: 0.04em; }
 
 .street-type-tag { font-size:0.42rem; color:var(--warm-mid); opacity:0.52; letter-spacing:0.04em; margin-top:0.08rem; }
-.slot-weather-row { display:flex; align-items:center; gap:0.65rem; margin-top:0.3rem; flex-wrap:wrap; }
-.slot-weather-text { font-size:0.62rem; font-family:'DM Mono',monospace; color:var(--warm-mid); letter-spacing:0.04em; }
-.uv-chip { display:inline-flex; align-items:center; gap:0.3rem; font-size:0.56rem; font-family:'DM Mono',monospace; color:var(--cream); white-space:nowrap; }
-.uv-chip-label { color:var(--warm-mid); font-size:0.44rem; text-transform:uppercase; letter-spacing:0.08em; }
-.uv-chip-bar { width:42px; height:5px; border-radius:3px; background:linear-gradient(to right,#4CAF50,#FFC107,#FF5722,#9C27B0); position:relative; display:inline-block; vertical-align:middle; flex-shrink:0; }
-.uv-chip-dot { position:absolute; top:50%; width:9px; height:9px; border-radius:50%; background:var(--cream); transform:translateY(-50%) translateX(-50%); border:2px solid var(--bg); }
+.slot-weather-row { display:flex; align-items:center; gap:0.5rem; margin-top:0.1rem; flex-wrap:wrap; }
+.slot-weather-row span { font-size:0.52rem; font-family:'DM Mono',monospace; color:var(--warm-mid); opacity:0.7; letter-spacing:0.04em; white-space:nowrap; }
+.uv-chip { display:inline-flex; align-items:center; gap:0.3rem; font-size:0.52rem; color:var(--warm-mid); opacity:0.75; font-family:'DM Mono',monospace; }
+.uv-chip-bar { width:44px; height:5px; border-radius:3px; background:linear-gradient(to right,#4CAF50,#FFC107,#FF5722,#9C27B0); position:relative; display:inline-block; vertical-align:middle; }
+.uv-chip-dot { position:absolute; top:50%; width:9px; height:9px; border-radius:50%; background:var(--cream); transform:translateY(-50%) translateX(-50%); border:1.5px solid var(--bg); }
 .azimuth-tag { font-size:0.44rem; color:rgba(154,122,90,0.22); margin-top:0.17rem; letter-spacing:0.05em; }
 
 .cafe-name-row { display:flex; align-items:baseline; gap:0.5rem; flex-wrap:wrap; }
@@ -381,7 +380,6 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
       <div class="time-block">
         <div class="current-time" id="clockDisplay">--:--</div>
         <div class="current-date" id="dateDisplay">---</div>
-        <div style="font-size:0.46rem;color:var(--warm-mid);opacity:0.7;margin-top:0.12rem;font-family:'DM Mono',monospace;letter-spacing:0.04em;text-align:right;" id="clockWeather"></div>
       </div>
     </div>
 
@@ -421,7 +419,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
           <div class="time-label">Heure sélectionnée</div>
           <div class="selected-time" id="selectedTime">--:--</div>
           <div class="slot-weather-row">
-            <span class="slot-weather-text" id="slotWeather"></span>
+            <span id="slotWeather"></span>
             <span id="uvInline"></span>
             <span id="aqiInline"></span>
           </div>
@@ -872,12 +870,11 @@ async function loadCommune(key){
   document.getElementById('mainContent').innerHTML='<div class="state-msg"><div class="loader"></div>Chargement des terrasses…</div>';
   const [jsonData,w] = await Promise.all([fetchFromJSON(key), fetchWeather(c.lat,c.lng)]);
   document.getElementById('weatherIcon').textContent=w.icon;
-  const _cw=document.getElementById('clockWeather');if(_cw)_cw.textContent=w.icon+(w.temp!=null?' '+w.temp+'°':'')+(w.windDir?' · '+w.windDir+' '+w.windSpeed+' km/h':'');
   document.getElementById('contextText').textContent=w.temp!==null?`${w.desc} · ${w.temp}°${w.windSpeed?` · ${w.windDir} ${w.windSpeed} km/h`:''}`:w.desc;
   window._weatherMap=w.hourlyMap||{};
-  const _uvEl=const _uvEl=document.getElementById('uvInline');
-  if(_uvEl&&w.uvIndex!=null){const _p=Math.min(100,w.uvIndex/11*100).toFixed(1);_uvEl.innerHTML='<span class="uv-chip"><span class="uv-chip-label">UV</span>'+w.uvIndex+'<span class="uv-chip-bar"><span class="uv-chip-dot" style="left:'+_p+'%"></span></span></span>';}
-  fetchAQI(c.lat,c.lng).then(function(aqi){const _el=document.getElementById('aqiInline');if(_el&&aqi.aqi!=null){const _p=Math.min(100,aqi.aqi/100*100).toFixed(1);_el.innerHTML='<span class="uv-chip"><span class="uv-chip-label">Air</span>'+aqi.label+'<span class="uv-chip-bar"><span class="uv-chip-dot" style="left:'+_p+'%"></span></span></span>';}});
+  const _uvEl=document.getElementById('uvInline');
+  if(_uvEl&&w.uvIndex!=null){const _p=Math.min(100,w.uvIndex/11*100).toFixed(1);_uvEl.innerHTML='<span class="uv-chip">UV '+w.uvIndex+' <span class="uv-chip-bar"><span class="uv-chip-dot" style="left:'+_p+'%"></span></span></span>';}
+  fetchAQI(c.lat,c.lng).then(function(aqi){const _el=document.getElementById('aqiInline');if(_el&&aqi.aqi!=null){const _p=Math.min(100,aqi.aqi/100*100).toFixed(1);_el.innerHTML='<span class="uv-chip">Air '+aqi.label+' <span class="uv-chip-bar"><span class="uv-chip-dot" style="left:'+_p+'%"></span></span></span>';}});
   let cafes = jsonData.map(cf=>({...cf,dist:haversine(c.lat,c.lng,cf.lat,cf.lng)})).sort((a,b)=>a.dist-b.dist);
   if(key==='geo') cafes = cafes.filter(cf => cf.dist <= (c.radius||1000)*3).slice(0,80);
   if(!cafes.length){document.getElementById('mainContent').innerHTML='<div class="state-msg">Aucune terrasse trouvée.</div>';return;}
