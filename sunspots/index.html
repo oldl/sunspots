@@ -157,6 +157,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 
 /* ── WEATHER + GEO ── */
 .weather-geo { display:flex; align-items:center; justify-content:space-between; padding:0.52rem 0 0.65rem; margin-top:0.48rem; }
+.weather-geo--under-clock { padding:0.2rem 0 0.35rem; margin-top:0.15rem; }
 .weather-block { display:flex; align-items:center; gap:0.4rem; }
 .weather-icon { font-size:1rem; }
 .weather-text { font-family:'DM Mono', monospace; font-size:0.72rem; color:var(--warm-mid); }
@@ -215,10 +216,10 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 
 .street-type-tag { font-size:0.42rem; color:var(--warm-mid); opacity:0.52; letter-spacing:0.04em; margin-top:0.08rem; }
 .slot-weather-row { display:flex; align-items:center; gap:0.5rem; margin-top:0.1rem; flex-wrap:wrap; }
-.slot-weather-row span { font-size:0.46rem; font-family:'DM Mono',monospace; color:var(--warm-mid); opacity:0.65; letter-spacing:0.04em; white-space:nowrap; }
-.uv-chip { display:inline-flex; align-items:center; gap:0.2rem; font-size:0.42rem; color:var(--warm-mid); opacity:0.6; }
-.uv-chip-bar { width:28px; height:3px; border-radius:2px; background:linear-gradient(to right,#4CAF50,#FFC107,#FF5722,#9C27B0); position:relative; display:inline-block; vertical-align:middle; }
-.uv-chip-dot { position:absolute; top:50%; width:6px; height:6px; border-radius:50%; background:var(--cream); transform:translateY(-50%) translateX(-50%); border:1px solid var(--bg); }
+.slot-weather-row span { font-size:0.52rem; font-family:'DM Mono',monospace; color:var(--warm-mid); opacity:0.7; letter-spacing:0.04em; white-space:nowrap; }
+.uv-chip { display:inline-flex; align-items:center; gap:0.3rem; font-size:0.52rem; color:var(--warm-mid); opacity:0.75; font-family:'DM Mono',monospace; }
+.uv-chip-bar { width:44px; height:5px; border-radius:3px; background:linear-gradient(to right,#4CAF50,#FFC107,#FF5722,#9C27B0); position:relative; display:inline-block; vertical-align:middle; }
+.uv-chip-dot { position:absolute; top:50%; width:9px; height:9px; border-radius:50%; background:var(--cream); transform:translateY(-50%) translateX(-50%); border:1.5px solid var(--bg); }
 .azimuth-tag { font-size:0.44rem; color:rgba(154,122,90,0.22); margin-top:0.17rem; letter-spacing:0.05em; }
 
 .cafe-name-row { display:flex; align-items:baseline; gap:0.5rem; flex-wrap:wrap; }
@@ -382,6 +383,14 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
       </div>
     </div>
 
+    <div class="weather-geo weather-geo--under-clock">
+      <div class="weather-block">
+        <span class="weather-icon" id="weatherIcon">—</span>
+        <span class="weather-text" id="contextText">Météo…</span>
+      </div>
+      <button class="geo-btn" id="geoBtn" onclick="requestGeo()">📍 Me localiser</button>
+    </div>
+
     <!-- Arc SVG -->
     <div class="arc-wrap">
       <svg class="arc-svg" id="arcSvg" viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
@@ -421,13 +430,6 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 
     </div>
 
-    <div class="weather-geo">
-      <div class="weather-block">
-        <span class="weather-icon" id="weatherIcon">—</span>
-        <span class="weather-text" id="contextText">Météo…</span>
-      </div>
-      <button class="geo-btn" id="geoBtn" onclick="requestGeo()">📍 Me localiser</button>
-    </div>
   </div><!-- end header-content -->
 </div>
 
