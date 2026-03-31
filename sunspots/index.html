@@ -214,6 +214,11 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 .sun-window-note { font-size: 0.46rem; opacity: 0.55; display: block; margin-top: 0.15rem; letter-spacing: 0.04em; }
 
 .street-type-tag { font-size:0.42rem; color:var(--warm-mid); opacity:0.52; letter-spacing:0.04em; margin-top:0.08rem; }
+.slot-weather { font-size:0.5rem; color:var(--warm-mid); opacity:0.65; letter-spacing:0.04em; margin-top:0.08rem; font-family:'DM Mono',monospace; }
+.uv-aqi-bar { margin:0.2rem 0 0; padding:0 1.1rem; }
+.uv-aqi-bar-label { display:flex; justify-content:space-between; font-size:0.44rem; color:var(--warm-mid); opacity:0.5; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.15rem; }
+.uv-aqi-track { height:4px; border-radius:2px; background:linear-gradient(to right,#4CAF50,#8BC34A,#FFC107,#FF5722,#9C27B0); position:relative; }
+.uv-aqi-dot { position:absolute; top:50%; width:9px; height:9px; border-radius:50%; background:var(--cream); transform:translateY(-50%) translateX(-50%); border:1.5px solid var(--bg); }
 .azimuth-tag { font-size:0.44rem; color:rgba(154,122,90,0.22); margin-top:0.17rem; letter-spacing:0.05em; }
 
 .cafe-name-row { display:flex; align-items:baseline; gap:0.5rem; flex-wrap:wrap; }
@@ -377,6 +382,16 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
       </div>
     </div>
 
+    <div class="weather-geo">
+      <div class="weather-block">
+        <span class="weather-icon" id="weatherIcon">—</span>
+        <span class="weather-text" id="contextText">Météo…</span>
+      </div>
+      <button class="geo-btn" id="geoBtn" onclick="requestGeo()">📍 Me localiser</button>
+    </div>
+    <div id="uvBar" style="padding:0 1.1rem 0;"></div>
+    <div id="aqiBar" style="padding:0 1.1rem 0.3rem;"></div>
+
     <!-- Arc SVG -->
     <div class="arc-wrap">
       <svg class="arc-svg" id="arcSvg" viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
@@ -404,6 +419,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
         <div>
           <div class="time-label">Heure sélectionnée</div>
           <div class="selected-time" id="selectedTime">--:--</div>
+          <div class="slot-weather" id="slotWeather"></div>
         </div>
         <div class="sun-status" id="sunStatusText"></div>
       </div>
@@ -411,13 +427,6 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 
     </div>
 
-    <div class="weather-geo">
-      <div class="weather-block">
-        <span class="weather-icon" id="weatherIcon">—</span>
-        <span class="weather-text" id="contextText">Météo…</span>
-      </div>
-      <button class="geo-btn" id="geoBtn" onclick="requestGeo()">📍 Me localiser</button>
-    </div>
   </div><!-- end header-content -->
 </div>
 
@@ -803,11 +812,24 @@ function isRainy(code){return [51,53,55,61,63,65,71,73,75,77,80,81,82,85,86,95,9
 function isOvercast(code){return code >= 3 || isRainy(code);}
 
 // Fetch current + hourly forecast for the day
+async function fetchAQI(lat,lng){
+  if(!window._aqiC)window._aqiC={};
+  const k=lat.toFixed(2)+lng.toFixed(2);
+  if(window._aqiC[k])return window._aqiC[k];
+  try{
+    const d=await(await fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude='+lat+'&longitude='+lng+'&current=european_aqi')).json();
+    const v=d.current&&d.current.european_aqi!=null?d.current.european_aqi:null;
+    const lbl=v===null?null:v<=20?'Bon':v<=40?'Correct':v<=60?'Moyen':v<=80?'Mauvais':'Très mauvais';
+    const c=v===null?'#888':v<=20?'#4CAF50':v<=40?'#8BC34A':v<=60?'#FFC107':v<=80?'#FF5722':'#9C27B0';
+    const r={aqi:v,label:lbl,color:c};
+    window._aqiC[k]=r;return r;
+  }catch{return{aqi:null,label:null,color:'#888'};}
+}
 async function fetchWeather(lat,lng){
   const k=`${lat.toFixed(2)},${lng.toFixed(2)}`;
   if(weatherCache[k]) return weatherCache[k];
   try {
-    const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=weather_code,temperature_2m,wind_speed_10m,wind_direction_10m&hourly=weather_code&timezone=auto&forecast_days=1`;
+    const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=weather_code,temperature_2m,wind_speed_10m,wind_direction_10m,uv_index&hourly=weather_code&timezone=auto&forecast_days=1`;
     const d=await(await fetch(url)).json();
     const[icon,desc]=WMO[d.current.weather_code]||['🌡','Météo'];
     // Build hourly weather map: hour (0-23) → weather_code
@@ -816,7 +838,7 @@ async function fetchWeather(lat,lng){
       const h=new Date(t).getHours();
       hourlyMap[h]=d.hourly.weather_code[i];
     });
-    const dirs=['N','NE','E','SE','S','SO','O','NO'];const windDir=dirs[Math.round(d.current.wind_direction_10m/45)%8];const windSpeed=Math.round(d.current.wind_speed_10m);const result={icon,desc,temp:Math.round(d.current.temperature_2m),windSpeed,windDir,hourlyMap};
+    const dirs=['N','NE','E','SE','S','SO','O','NO'];const windDir=dirs[Math.round(d.current.wind_direction_10m/45)%8];const windSpeed=Math.round(d.current.wind_speed_10m);const uvIndex=Number.isFinite(d.current.uv_index)?Math.round(d.current.uv_index):null;const result={icon,desc,temp:Math.round(d.current.temperature_2m),windSpeed,windDir,uvIndex,hourlyMap};
     weatherCache[k]=result;
     return result;
   } catch {
@@ -848,6 +870,11 @@ async function loadCommune(key){
   document.getElementById('weatherIcon').textContent=w.icon;
   document.getElementById('contextText').textContent=w.temp!==null?`${w.desc} · ${w.temp}°${w.windSpeed?` · ${w.windDir} ${w.windSpeed} km/h`:''}`:w.desc;
   window._weatherMap=w.hourlyMap||{};
+  // UV bar
+  const uvEl=document.getElementById('uvBar');
+  if(uvEl&&w.uvIndex!=null){const p=Math.min(100,w.uvIndex/11*100).toFixed(1);uvEl.innerHTML='<div class="uv-aqi-bar"><div class="uv-aqi-bar-label"><span>UV</span><span>'+w.uvIndex+'</span></div><div class="uv-aqi-track"><div class="uv-aqi-dot" style="left:'+p+'%"></div></div></div>';}
+  // AQI bar (async)
+  fetchAQI(c.lat,c.lng).then(function(aqi){const aqiEl=document.getElementById('aqiBar');if(aqiEl&&aqi.aqi!=null){const p=Math.min(100,aqi.aqi/100*100).toFixed(1);aqiEl.innerHTML='<div class="uv-aqi-bar"><div class="uv-aqi-bar-label"><span>Qualité de l'air</span><span>'+aqi.label+'</span></div><div class="uv-aqi-track"><div class="uv-aqi-dot" style="left:'+p+'%"></div></div></div>';}});
   let cafes = jsonData.map(cf=>({...cf,dist:haversine(c.lat,c.lng,cf.lat,cf.lng)})).sort((a,b)=>a.dist-b.dist);
   if(key==='geo') cafes = cafes.filter(cf => cf.dist <= (c.radius||1000)*3).slice(0,80);
   if(!cafes.length){document.getElementById('mainContent').innerHTML='<div class="state-msg">Aucune terrasse trouvée.</div>';return;}
@@ -912,6 +939,8 @@ function onSliderInput(){
   const val=parseInt(document.getElementById('timeSlider').value);
   displaySlot=val;
   document.getElementById('selectedTime').textContent=slotToStr(val);
+  const _swEl=document.getElementById('slotWeather');
+  if(_swEl&&window._weatherMap){const _wc=weatherForSlot(window._weatherMap,val);const _wmo=WMO[_wc];if(_wmo)_swEl.textContent=_wmo[0]+' '+_wmo[1];}
   document.getElementById('sunStatusText').textContent=getSunStatusText(val);
   updateArc(val);
   if(cache[activeCommune])renderList();
