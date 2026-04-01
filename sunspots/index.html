@@ -418,15 +418,15 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
         <div>
           <div class="time-label">Heure sélectionnée</div>
           <div class="selected-time" id="selectedTime">--:--</div>
-          <div class="slot-weather-row">
-            <span id="slotWeather"></span>
-            <span id="uvInline"></span>
-            <span id="aqiInline"></span>
-          </div>
         </div>
         <div class="sun-status" id="sunStatusText"></div>
       </div>
       <input type="range" id="timeSlider" min="0" max="72" value="24" step="1" oninput="onSliderInput()">
+      <div class="slot-weather-row" style="padding:0.3rem 0 0;">
+        <span id="slotWeather"></span>
+        <span id="uvInline"></span>
+        <span id="aqiInline"></span>
+      </div>
 
     </div>
 
