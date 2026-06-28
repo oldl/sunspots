@@ -1055,7 +1055,7 @@ function selectGeo(){if(!userLat){requestGeo();return;}activeCommune='geo';docum
 function getSpotsLoaderMarkup(label){
   return `<div class="state-msg"><div class="radar-loading" role="status" aria-live="polite" aria-label="${label.replace(/"/g,'&quot;')}"><div class="radar"><div class="radar__sweep"></div><span class="radar__blip"></span><span class="radar__blip"></span><span class="radar__blip"></span><div class="radar__core"></div></div><p class="radar-loading__label">${label}</p></div></div>`;
 }
-function waitForMinimumLoader(duration=1500){
+function waitForMinimumLoader(duration=2000){
   return new Promise(resolve=>setTimeout(resolve,duration));
 }
 function setAppLoadingState(isLoading, label='Recherche des spots ensoleilles...'){
