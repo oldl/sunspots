@@ -38,6 +38,16 @@
   --card-border: rgba(120,160,220,0.1);
 }
 html, body { background: var(--bg); color: var(--cream); font-family: 'DM Mono', monospace; overflow-x: hidden; }
+body.app-loading #appHeader,
+body.app-loading #communeTabs,
+body.app-loading #weatherBanner,
+body.app-loading #sunCount,
+body.app-loading .footer {
+  display:none !important;
+}
+body.app-loading #mainContent {
+  min-height:100vh;
+}
 
 /* ── HEADER ── */
 .header { position:relative; background:var(--bg); padding:0.85rem 1.1rem 0; overflow:hidden; }
@@ -264,9 +274,93 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 }
 
 /* ── STATES ── */
-.state-msg { padding:2.5rem 2rem; text-align:center; font-family:'DM Mono', monospace;  color:var(--warm-mid); opacity:0.4; font-size:0.84rem; line-height:1.8; }
-.loader { width:18px; height:18px; border:2px solid rgba(245,166,35,0.1); border-top-color:var(--sun-bright); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 0.72rem; }
-@keyframes spin { to { transform:rotate(360deg); } }
+.state-msg { padding:2.5rem 2rem; text-align:center; font-family:'DM Mono', monospace; color:var(--warm-mid); opacity:0.4; font-size:0.84rem; line-height:1.8; }
+body.app-loading .state-msg { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:2rem; }
+.radar-loading { display:flex; flex-direction:column; align-items:center; gap:22px; }
+.radar {
+  --radar-accent: #e3a52a;
+  --radar-blip: #54e08c;
+  --radar-size: 130px;
+  position:relative;
+  width:var(--radar-size);
+  height:var(--radar-size);
+  border-radius:50%;
+  flex:none;
+}
+.radar::before,
+.radar::after {
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid color-mix(in srgb, var(--radar-accent) 28%, transparent);
+}
+.radar::before { inset:0; }
+.radar::after { inset:25%; }
+.radar__sweep {
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  overflow:hidden;
+}
+.radar__sweep::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 225deg,
+    color-mix(in srgb, var(--radar-accent) 40%, transparent) 320deg,
+    var(--radar-accent) 360deg
+  );
+  animation:radar-sweep 1.8s linear infinite;
+}
+@keyframes radar-sweep { to { transform:rotate(360deg); } }
+.radar__core {
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:7px;
+  height:7px;
+  margin:-3.5px;
+  border-radius:50%;
+  background:var(--radar-accent);
+}
+.radar__blip {
+  position:absolute;
+  width:9px;
+  height:9px;
+  margin:-4.5px;
+  border-radius:50%;
+  background:var(--radar-blip);
+  box-shadow:0 0 6px color-mix(in srgb, var(--radar-blip) 70%, transparent);
+  opacity:0;
+  animation:radar-blip 1.8s linear infinite;
+}
+.radar__blip:nth-of-type(1) { top:31%; left:64%; animation-delay:0s; }
+.radar__blip:nth-of-type(2) { top:66%; left:37%; animation-delay:.55s; }
+.radar__blip:nth-of-type(3) { top:50%; left:77%; animation-delay:1.1s; }
+@keyframes radar-blip {
+  0%, 68% { opacity:0; transform:scale(0); }
+  78% { opacity:1; transform:scale(1.4); }
+  100% { opacity:.9; transform:scale(1); }
+}
+.radar-loading__label {
+  margin:0;
+  font:400 13px/1.4 'DM Mono', monospace;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#c9b896;
+}
+@media (prefers-reduced-motion: reduce) {
+  .radar__sweep::before { animation:radar-pulse 1.6s ease-in-out infinite; }
+  .radar__blip { animation:none; opacity:.9; }
+  @keyframes radar-pulse {
+    0%, 100% { opacity:.3; }
+    50% { opacity:.85; }
+  }
+}
 .step-list { margin-top:0.52rem; display:flex; flex-direction:column; gap:0.27rem; }
 .step { font-size:0.48rem; letter-spacing:0.06em; text-transform:uppercase; opacity:0.21; transition:opacity 0.3s; }
 .step.done { opacity:0.17; text-decoration:line-through; }
@@ -365,9 +459,9 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 .modal-send:hover { opacity: 0.88; }
 </style>
 </head>
-<body>
+<body class="app-loading">
 
-<div class="header">
+<div class="header" id="appHeader">
   <div class="solar-bg"></div>
   <div class="solar-glass"></div>
 
@@ -453,7 +547,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; h
 
 <div id="weatherBanner"></div>
 <div class="sun-count" id="sunCount"></div>
-<div id="mainContent"><div class="state-msg"><div class="loader"></div>Chargement…</div></div>
+<div id="mainContent"><div class="state-msg"><div class="radar-loading" role="status" aria-live="polite" aria-label="Recherche des spots ensoleilles en cours"><div class="radar"><div class="radar__sweep"></div><span class="radar__blip"></span><span class="radar__blip"></span><span class="radar__blip"></span><div class="radar__core"></div></div><p class="radar-loading__label">Recherche des spots ensoleilles...</p></div></div></div>
 <div id="timeline-cursor"></div>
 <div id="cursor-chip"></div>
 <div class="copy-toast" id="copyToast">Adresse copiée</div>
@@ -867,22 +961,29 @@ function effectiveStatus(solarStatus, weatherCode){
 async function loadCommune(key){
   if(cache[key]){renderList();return;}
   const c=key==='geo'?{label:'Autour de moi',lat:userLat,lng:userLng,radius:1000}:COMMUNES[key];
-  document.getElementById('mainContent').innerHTML='<div class="state-msg"><div class="loader"></div>Chargement des terrasses…</div>';
-  const [jsonData,w] = await Promise.all([fetchFromJSON(key), fetchWeather(c.lat,c.lng)]);
-  document.getElementById('weatherIcon').textContent=w.icon;
-  document.getElementById('contextText').textContent=w.temp!==null?`${w.desc} · ${w.temp}°${w.windSpeed?` · ${w.windDir} ${w.windSpeed} km/h`:''}`:w.desc;
-  window._weatherMap=w.hourlyMap||{};
-  const _uvEl=document.getElementById('uvInline');
-  if(_uvEl&&w.uvIndex!=null){const _p=Math.min(100,w.uvIndex/11*100).toFixed(1);_uvEl.innerHTML='<span class="uv-chip">UV '+w.uvIndex+' <span class="uv-chip-bar"><span class="uv-chip-dot" style="left:'+_p+'%"></span></span></span>';}
-  fetchAQI(c.lat,c.lng).then(function(aqi){const _el=document.getElementById('aqiInline');if(_el&&aqi.aqi!=null){const _p=Math.min(100,aqi.aqi/100*100).toFixed(1);_el.innerHTML='<span class="uv-chip">Air '+aqi.label+' <span class="uv-chip-bar"><span class="uv-chip-dot" style="left:'+_p+'%"></span></span></span>';}});
-  let cafes = jsonData.map(cf=>({...cf,dist:haversine(c.lat,c.lng,cf.lat,cf.lng)})).sort((a,b)=>a.dist-b.dist);
-  if(key==='geo') cafes = cafes.filter(cf => cf.dist <= (c.radius||1000)*3).slice(0,80);
-  if(!cafes.length){document.getElementById('mainContent').innerHTML='<div class="state-msg">Aucune terrasse trouvée.</div>';return;}
-  cache[key]=cafes.map(cafe=>{
-    const az = cafe.azimuth!=null ? cafe.azimuth : 180;
-    return {...cafe,azimuth:az,schedule:getSchedule(cafe.lat,cafe.lng,az)};
-  });
-  renderList();
+  setAppLoadingState(true, 'Chargement des terrasses...');
+  try{
+    const [jsonData,w] = await Promise.all([fetchFromJSON(key), fetchWeather(c.lat,c.lng), waitForMinimumLoader()]);
+    document.getElementById('weatherIcon').textContent=w.icon;
+    document.getElementById('contextText').textContent=w.temp!==null?`${w.desc} · ${w.temp}°${w.windSpeed?` · ${w.windDir} ${w.windSpeed} km/h`:''}`:w.desc;
+    window._weatherMap=w.hourlyMap||{};
+    const _uvEl=document.getElementById('uvInline');
+    if(_uvEl&&w.uvIndex!=null){const _p=Math.min(100,w.uvIndex/11*100).toFixed(1);_uvEl.innerHTML='<span class="uv-chip">UV '+w.uvIndex+' <span class="uv-chip-bar"><span class="uv-chip-dot" style="left:'+_p+'%"></span></span></span>';}
+    fetchAQI(c.lat,c.lng).then(function(aqi){const _el=document.getElementById('aqiInline');if(_el&&aqi.aqi!=null){const _p=Math.min(100,aqi.aqi/100*100).toFixed(1);_el.innerHTML='<span class="uv-chip">Air '+aqi.label+' <span class="uv-chip-bar"><span class="uv-chip-dot" style="left:'+_p+'%"></span></span></span>';}});
+    let cafes = jsonData.map(cf=>({...cf,dist:haversine(c.lat,c.lng,cf.lat,cf.lng)})).sort((a,b)=>a.dist-b.dist);
+    if(key==='geo') cafes = cafes.filter(cf => cf.dist <= (c.radius||1000)*3).slice(0,80);
+    setAppLoadingState(false);
+    if(!cafes.length){document.getElementById('mainContent').innerHTML='<div class="state-msg">Aucune terrasse trouvée.</div>';return;}
+    cache[key]=cafes.map(cafe=>{
+      const az = cafe.azimuth!=null ? cafe.azimuth : 180;
+      return {...cafe,azimuth:az,schedule:getSchedule(cafe.lat,cafe.lng,az)};
+    });
+    renderList();
+  }catch(err){
+    setAppLoadingState(false);
+    console.error('Chargement des terrasses impossible:', err);
+    document.getElementById('mainContent').innerHTML='<div class="state-msg">Impossible de charger les terrasses pour le moment.</div>';
+  }
 }
 
 // ── RENDER ──
@@ -950,6 +1051,19 @@ function onSliderInput(){
 function selectCommune(key){activeCommune=key;document.querySelectorAll('.commune-tab').forEach(t=>t.classList.toggle('active',t.dataset.commune===key));loadCommune(key);}
 function requestGeo(){if(!navigator.geolocation)return;document.getElementById('geoBtn').textContent='⟳ …';navigator.geolocation.getCurrentPosition(pos=>{userLat=pos.coords.latitude;userLng=pos.coords.longitude;document.getElementById('geoBtn').textContent='✓ Localisé';document.getElementById('geoBtn').classList.add('located');selectGeo();},()=>{document.getElementById('geoBtn').textContent='📍 Me localiser';},{enableHighAccuracy:true,timeout:12000});}
 function selectGeo(){if(!userLat){requestGeo();return;}activeCommune='geo';document.querySelectorAll('.commune-tab').forEach(t=>t.classList.toggle('active',t.dataset.commune==='geo'));loadCommune('geo');}
+
+function getSpotsLoaderMarkup(label){
+  return `<div class="state-msg"><div class="radar-loading" role="status" aria-live="polite" aria-label="${label.replace(/"/g,'&quot;')}"><div class="radar"><div class="radar__sweep"></div><span class="radar__blip"></span><span class="radar__blip"></span><span class="radar__blip"></span><div class="radar__core"></div></div><p class="radar-loading__label">${label}</p></div></div>`;
+}
+function waitForMinimumLoader(duration=1500){
+  return new Promise(resolve=>setTimeout(resolve,duration));
+}
+function setAppLoadingState(isLoading, label='Recherche des spots ensoleilles...'){
+  document.body.classList.toggle('app-loading', !!isLoading);
+  if(isLoading){
+    document.getElementById('mainContent').innerHTML=getSpotsLoaderMarkup(label);
+  }
+}
 
 // ── COPY ──
 function copyAddress(e,text){e.stopPropagation();navigator.clipboard.writeText(text).then(()=>{const btn=e.currentTarget;btn.classList.add('copied');btn.textContent='✓';const t=document.getElementById('copyToast');t.classList.add('show');setTimeout(()=>{btn.classList.remove('copied');btn.textContent='⎘';t.classList.remove('show');},1800);});}
